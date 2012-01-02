@@ -1,0 +1,35 @@
+<?xml version='1.0'?>
+<!--
+    Packager.xml
+
+    since   : Jul. 27, 1999
+    version : Nov. 16, 2003
+    author  : ASAMI, Tomoharu (asami@AsamiOffice.com)
+-->
+
+<map>
+  <entry>
+    <name>none</name>
+    <class>com.AsamiOffice.jaba2.j2fw.generator.packager.NonePackager</class>
+  </entry>
+  <entry>
+    <name>file</name>
+    <class>com.AsamiOffice.jaba2.j2fw.generator.packager.FilePackager</class>
+  </entry>
+  <entry>
+    <name>dir</name>
+    <class>com.AsamiOffice.jaba2.j2fw.generator.packager.DirectoryPackager</class>
+  </entry>
+  <entry>
+    <name>jar</name>
+    <class>com.AsamiOffice.jaba2.j2fw.generator.packager.JarPackager</class>
+  </entry>
+  <entry>
+    <name>dirjar</name>
+    <class>com.AsamiOffice.jaba2.j2fw.generator.packager.DirectoryJarPackager</class>
+  </entry>
+  <entry>
+    <name>stdout</name>
+    <class>com.AsamiOffice.jaba2.j2fw.generator.packager.StdoutPackager</class>
+  </entry>
+</map>

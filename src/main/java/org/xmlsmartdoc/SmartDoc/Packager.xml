@@ -1,0 +1,23 @@
+<?xml version='1.0'?>
+<!--
+    Packager.xml
+
+    since   : Jul. 27, 1999
+    version : Oct. 22, 2003
+    author  : ASAMI, Tomoharu (asami@XMLSmartDoc.org)
+-->
+
+<map>
+  <entry>
+    <name>jar</name>
+    <class>org.xmlsmartdoc.SmartDoc.packager.SmartDocJarPackager</class>
+  </entry>
+  <entry>
+    <name>dirjar</name>
+    <class>org.xmlsmartdoc.SmartDoc.packager.SmartDocDirectoryJarPackager</class>
+  </entry>
+  <entry>
+    <name>cdf</name>
+    <class>org.xmlsmartdoc.SmartDoc.packager.CDFPackager</class>
+  </entry>
+</map>

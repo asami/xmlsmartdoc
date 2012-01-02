@@ -1,0 +1,190 @@
+<?xml version="1.0"?>
+<!DOCTYPE hilightData SYSTEM "hilightData.dtd">
+<hilightData>
+
+<!-- ### Java ################# -->
+
+  <syntax name="java">
+    <word tagClass="org.xmlsmartdoc.SmartDoc.Span"
+          cssClass="keyword" regex="false">
+      <expression>public,protected,private,abstract,final,transient,native,class,interface,extends,implements,static,import,for,while,if,do,else,switch,case,throws,package,try,catch,finally,synchronized,default,new,return,super,this,break,continue,volatile,throw,assert,instanceof,strictfp</expression>
+    </word>
+    <word tagClass="org.xmlsmartdoc.SmartDoc.Span"
+          cssClass="primitive" regex="false">
+      <expression>short,byte,int,long,float,double,char,boolean,void</expression>
+    </word>
+    <word tagClass="org.xmlsmartdoc.SmartDoc.Span"
+          cssClass="comment" regex="true">
+      <expression>//.*$</expression>
+      <expression>/\*[^/](.|\s)*?\*/</expression>
+      <expression>/\*\*[^/](.|\s)*?\*/</expression>
+    </word>
+    <word tagClass="org.xmlsmartdoc.SmartDoc.Span"
+          cssClass="quote" regex="true">
+      <expression>\".*?\"</expression>
+    </word>
+	<word tagClass="org.xmlsmartdoc.SmartDoc.Span"
+          cssClass="constant" regex="true">
+	  <expression>\b[A-Z][A-Z0-9_]+\b</expression>
+	  <expression>\b(null|false|true)\b</expression>
+	</word>
+	<word tagClass="org.xmlsmartdoc.SmartDoc.Span"
+          cssClass="class" regex="true">
+	  <expression>\b[A-Z][A-Z0-9_$]*[a-z](\w|\$)+\b</expression>
+	</word>
+  </syntax>
+
+<!-- ### XML ################# -->
+
+  <syntax name="xml">
+    <word tagClass="org.xmlsmartdoc.SmartDoc.Span"
+          cssClass="keyword" regex="true">
+      <expression>&lt;[^-?%!]([a-zA-Z0-9\:-])*</expression> <!-- open begin tag -->
+      <expression>&gt;</expression> <!-- close begin tag -->
+      <expression>&lt;\s*![A-Z]+</expression> <!-- definition -->
+    </word>
+    <word tagClass="org.xmlsmartdoc.SmartDoc.Span"
+          cssClass="primitive" regex="true">
+      <expression>\b(\w|\:)*?=</expression> <!-- attribute (not good, because all attribute-like texts match.) -->
+      <expression>&lt;\?(.|\s)*?\?&gt;</expression> <!-- declaration -->
+      <expression>(#PCDATA|\bNMTOKEN|#REQUIRED)\b</expression>
+    </word>
+    <word tagClass="org.xmlsmartdoc.SmartDoc.Span"
+          cssClass="comment" regex="true">
+      <expression>&lt;!--(.|\s)*?--&gt;</expression> <!-- comment -->
+      <expression>&lt;\?(.|\s)*?\?&gt;</expression> <!-- PI -->
+    </word>
+    <word tagClass="org.xmlsmartdoc.SmartDoc.Span"
+          cssClass="quote" regex="true">
+      <expression>\".*?\"</expression> <!-- attribute quote (not good, because all quotes match.) -->
+      <expression>&lt;!\[CDATA\[(.|\s)*?\]\]&gt;</expression> <!-- CDATA -->
+    </word>
+    <word tagClass="org.xmlsmartdoc.SmartDoc.Span"
+          cssClass="constant" regex="true">
+      <expression>&amp;[^;]+;</expression> <!-- entity reference -->
+    </word>
+  </syntax>
+
+<!-- ### C++ ################# -->
+
+  <syntax name="cpp">
+    <word tagClass="org.xmlsmartdoc.SmartDoc.Span"
+          cssClass="keyword" regex="false">
+      <expression>and,and_eq,asm,auto,bitand,bitor,break,case,catch,class,compl,const,const_cast,continue,default,delete,do,dynamic_cast,else,enum,explicit,export,extern,for,friend,goto,if,inline,int,long,mutable,namespace,new,not,not_eq,operator,or,or_eq,private,protected,public,register,reinterpret_cast,return,signed,sizeof,static,static_cast,struct,switch,template,this,throw,try,typedef,typeid,typename,union,using,virtual,volatile,while,xor,xor_eq</expression>
+    </word>
+    <word tagClass="org.xmlsmartdoc.SmartDoc.Span"
+          cssClass="primitive" regex="false">
+      <expression>unsigned,short,byte,int,long,float,double,char,boolean,void,whar_t,bool</expression>
+    </word>
+    <word tagClass="org.xmlsmartdoc.SmartDoc.Span"
+          cssClass="comment" regex="true">
+      <expression>//.*$</expression>
+      <expression>/\*[^/](.|\s)*?\*/</expression>
+    </word>
+    <word tagClass="org.xmlsmartdoc.SmartDoc.Span"
+          cssClass="quote" regex="true">
+      <expression>\".*?\"</expression>
+    </word>
+	<word tagClass="org.xmlsmartdoc.SmartDoc.Span"
+          cssClass="constant" regex="true">
+	  <expression>\b[A-Z][A-Z0-9_]+\b</expression>
+	  <expression>\b(null|false|true)\b</expression>
+	</word>
+
+    <!-- preprocessor -->
+	<word tagClass="org.xmlsmartdoc.SmartDoc.Span"
+          cssClass="class" regex="false">
+	  <expression>#if,#ifdef,#ifndef,#elif,#else,#endif,#include,#define,#undef,#line,#error,#pragma,__LINE__,__FILE__,__DATE__,__TIME__,__STDC__</expression>
+	</word>
+  </syntax>
+
+<!-- ### Perl ################# -->
+
+  <syntax name="perl">
+    <!-- keyword -->
+    <word tagClass="org.xmlsmartdoc.SmartDoc.Span"
+          cssClass="keyword" regex="false">
+      <expression>include,define,import,use,require,local,my,if,until,while,elsif,else,unless,do,dump,for,foreach,exit,die,BEGIN,END,return,exec,eval,continue,goto,last,next,redo,sub</expression>
+    </word>
+    <!-- comment -->
+    <word tagClass="org.xmlsmartdoc.SmartDoc.Span"
+          cssClass="comment" regex="true">
+      <expression>#.*$</expression>
+    </word>
+    <!-- quote and regex -->
+    <word tagClass="org.xmlsmartdoc.SmartDoc.Span"
+          cssClass="quote" regex="true">
+      <expression>\'.*?\'</expression>
+      <expression>\".*?\"</expression>
+      <expression>((s\/([^\n\\]|\\.)*\/([^\n\\]|\\.)*\/)|(\/([^\n\\]|\\.)*\/))[sgimeox]*</expression>
+    </word>
+    <!-- subroutine call -->
+    <word tagClass="org.xmlsmartdoc.SmartDoc.Span"
+          cssClass="primitive" regex="true">
+      <expression>&amp;[A-Za-z][A-Za-x0-9_:]+</expression>
+    </word>
+    <!-- variable -->
+	<word tagClass="org.xmlsmartdoc.SmartDoc.Span"
+          cssClass="constant" regex="true">
+	  <expression>\$?[$@%][A-Za-z0-9_:]+</expression>
+	</word>
+    <!-- class -->
+	<word tagClass="org.xmlsmartdoc.SmartDoc.Span"
+          cssClass="class" regex="true">
+	  <expression>[A-Z]\w+::\w+</expression>
+	</word>
+  </syntax>
+
+<!-- ### Ruby ################# -->
+
+  <syntax name="ruby">
+    <!-- keyword -->
+    <word tagClass="org.xmlsmartdoc.SmartDoc.Span"
+          cssClass="keyword" regex="false">
+      <expression>BEGIN,class,ensure,when,END,def,not,super,while,alias,defined,for,or,then,yield,and,do,if,redo,begin,else,in,rescue,undef,break,elsif,module,require,include,retry,unless,case,end,next,return,until,private</expression>
+    </word>
+    <!-- comment -->
+    <word tagClass="org.xmlsmartdoc.SmartDoc.Span"
+          cssClass="comment" regex="true">
+      <expression>#.*$</expression>
+      <expression>^=begin(.|\s)*?^=end</expression>
+    </word>
+    <!-- quote and regex -->
+    <word tagClass="org.xmlsmartdoc.SmartDoc.Span"
+          cssClass="quote" regex="true">
+      <expression>\'.*?\'</expression>
+      <expression>\".*?\"</expression>
+      <expression>\/([^\n\\]|\\.)*\/[gime]*</expression>
+      <expression>%[xrqQwWs]?\[[^\]]*?\]</expression> <!-- []brace -->
+      <expression>%[xrqQwWs]?&lt;[^&gt;]*?&gt;</expression> <!-- <>brace -->
+      <expression>%[xrqQwWs]?\([^)]*?\)</expression> <!-- ()brace -->
+      <expression>%[xrqQwWs]?\{[^}]*?\}</expression> <!-- {}brace -->
+      <expression>%[xrqQwWs]?([^a-zA-Z0-9 \n&lt;([{])(.|\s)*?\1</expression> <!-- non-brace -->
+    </word>
+    <!-- global, class, instance variable -->
+    <word tagClass="org.xmlsmartdoc.SmartDoc.Span"
+          cssClass="primitive" regex="true">
+      <expression>\$([^a-zA-Z0-9\n]|[0-9])\W</expression>
+      <expression>(\$|@|@@)(\w|_)+</expression>
+    </word>
+    <word tagClass="org.xmlsmartdoc.SmartDoc.Span"
+          cssClass="primitive" regex="false">
+      <expression>self</expression>
+    </word>
+    <!-- symbol -->
+	<word tagClass="org.xmlsmartdoc.SmartDoc.Span"
+          cssClass="constant" regex="true">
+	  <expression>:(\$|@|@@)?(\w|_)+[?!]?</expression>
+	</word>
+    <!-- constant and class -->
+	<word tagClass="org.xmlsmartdoc.SmartDoc.Span"
+          cssClass="class" regex="true">
+	  <expression>\b_*([A-Z]+(\w|_)*)\b</expression>
+	</word>
+	<word tagClass="org.xmlsmartdoc.SmartDoc.Span"
+          cssClass="class" regex="false">
+      <expression>nil,true,false</expression>
+	</word>
+  </syntax>
+
+</hilightData>

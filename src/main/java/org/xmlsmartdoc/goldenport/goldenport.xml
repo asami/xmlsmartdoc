@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config xmlns="http://www.relaxer.org/xmlns/framework">
+  <copyright>Copyright(c) 2002-2004 ASAMI,Tomoharu. All rights reserved.</copyright>
+  <version number="0.1b" build="20040706"
+  prologue="Goldenport" epilogue="by asami@xmlSmartDoc.org"/>
+  <usage>goldenport [-options] [args...]</usage>
+  <service name="eval" component="goldenport" operation="eval"/>
+  <service name="evalDocument" component="goldenport"
+           operation="evalDocument"/>
+  <option name="systemConfig" component="goldenport" attribute="systemConfig"/>
+  <option name="config" component="goldenport" attribute="config"/>
+  <option name="xmlBase" component="goldenport" attribute="xmlBase"/>
+  <component name="goldenport"
+             java.type="org.xmlsmartdoc.goldenport.IGoldenport"
+             java.class="org.xmlsmartdoc.goldenport.GoldenportBean">
+    <attribute name="systemConfig"
+               java.type="org.xmlsmartdoc.goldenport.config.GcGoldenportConfig"/>
+    <attribute name="config"
+               java.type="org.xmlsmartdoc.goldenport.config.GcGoldenportConfig"/>
+    <attribute name="systemMacro"
+               java.type="org.w3c.dom.Document"/>
+    <attribute name="macro"
+               java.type="org.w3c.dom.Document"/>
+    <attribute name="xmlBase"
+               java.type="String"/>
+    <operation name="eval">
+      <in name="source"
+          java.type="org.w3c.dom.Document"/>
+      <out name="result"
+           java.type="org.w3c.dom.Document"/>
+    </operation>
+    <operation name="evalDocument">
+      <in name="source"
+          java.type="org.w3c.dom.Document"/>
+      <out name="result"
+           java.type="org.w3c.dom.Document"/>
+    </operation>
+    <extension>
+      <variable name="systemConfig"
+                java.type="org.xmlsmartdoc.goldenport.config.GcGoldenportConfig"
+                value=""/>
+      <variable name="config"
+                java.type="org.xmlsmartdoc.goldenport.config.GcGoldenportConfig"
+                value=""/>
+      <variable name="systemMacro"
+                java.type="org.w3c.dom.Document"
+                value=""/>
+      <variable name="macro"
+                java.type="org.w3c.dom.Document"
+                value=""/>
+    </extension>
+  </component>
+</config>

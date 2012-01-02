@@ -1,0 +1,4 @@
+<scenario>
+  <property name="ok">AAA</property>
+  <action name="ok">AAA</action>
+</scenario>

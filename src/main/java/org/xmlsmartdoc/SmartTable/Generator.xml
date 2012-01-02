@@ -1,0 +1,27 @@
+<?xml version='1.0'?>
+<!--
+    Generator.xml
+
+    since   : Aug.  2, 1999
+    version : Oct. 22, 2003
+    author  : ASAMI, Tomoharu (asami@XMLSmartDoc.org)
+-->
+
+<map>
+  <entry>
+    <name>auto</name>
+    <class>org.xmlsmartdoc.SmartTable.AutoGenerator</class>
+  </entry>
+  <entry>
+    <name>xml</name>
+    <class>org.xmlsmartdoc.SmartTable.XMLGenerator</class>
+  </entry>
+  <entry>
+    <name>htmltable</name>
+    <class>org.xmlsmartdoc.SmartTable.HTMLTableGenerator</class>
+  </entry>
+  <entry>
+    <name>csv</name>
+    <class>org.xmlsmartdoc.SmartTable.CSVGenerator</class>
+  </entry>
+</map>

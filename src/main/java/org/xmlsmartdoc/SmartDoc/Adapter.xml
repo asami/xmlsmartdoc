@@ -1,0 +1,63 @@
+<?xml version='1.0'?>
+<!--
+    Adapter.xml
+
+    since   : Jul. 23, 1999
+    version : Oct. 22, 2003
+    author  : ASAMI, Tomoharu (asami@XMLSmartDoc.org)
+-->
+
+<map>
+  <entry>
+    <name>none</name>
+    <class></class>
+  </entry>
+  <entry>
+    <name>text</name>
+    <class>org.xmlsmartdoc.SmartDoc.adapter.TextAdapter</class>
+  </entry>
+  <entry>
+    <name>sdoc</name>
+    <class>org.xmlsmartdoc.SmartDoc.adapter.SDocAdapter</class>
+  </entry>
+  <entry>
+    <name>macro</name>
+    <class>org.xmlsmartdoc.SmartDoc.adapter.MacroAdapter</class>
+  </entry>
+  <entry>
+    <name>csv</name>
+    <class>org.xmlsmartdoc.SmartDoc.adapter.CSVAdapter</class>
+  </entry>
+  <entry>
+    <name>sxtab</name>
+    <class>org.xmlsmartdoc.SmartDoc.adapter.SmartTableAdapter</class>
+  </entry>
+  <entry>
+    <name>stable</name>
+    <class>org.xmlsmartdoc.SmartDoc.adapter.SmartTableAdapter</class>
+  </entry>
+  <entry>
+    <name>jdbc</name>
+    <class>org.xmlsmartdoc.SmartDoc.adapter.JDBCAdapter</class>
+  </entry>
+  <entry>
+    <name>tab</name>
+    <class>org.xmlsmartdoc.SmartDoc.adapter.TabAdapter</class>
+  </entry>
+  <entry>
+    <name>sp</name>
+    <class>org.xmlsmartdoc.SmartDoc.adapter.SpaceAdapter</class>
+  </entry>
+  <entry>
+    <name>autoimage</name>
+    <class>org.xmlsmartdoc.SmartDoc.adapter.AutoImageAdapter</class>
+  </entry>
+  <entry>
+    <name>bean</name>
+    <class>org.xmlsmartdoc.SmartDoc.adapter.BeanAdapter</class>
+  </entry>
+  <entry>
+    <name>xslt</name>
+    <class>org.xmlsmartdoc.SmartDoc.adapter.XSLTAdapter</class>
+  </entry>
+</map>

@@ -1,0 +1,37 @@
+<config xmlns="http://www.relaxer.org/xmlns/framework">
+  <service name="find" component="ExampleManager" operation="find"/>
+  <component name="ExampleManager" java.class="com.example.ExampleManager">
+    <operation name="find">
+      <in type="token"/>
+      <out type="token"/>
+    </operation>
+    <externan name="controller">
+      <ref name="ExampleController"/>
+    </externan>
+  </component>
+  <component name="ExampleController" java.class="com.example.ExampleController">
+    <operation name="find">
+      <in type="token"/>
+      <out type="token"/>
+    </operation>
+  </component>
+  <resource>
+    <jdbc name="sample"> <!-- java:comp/env/jdbc/ -->
+      <DataSource>
+        <url>jdbc:idb:foo.prp</url>
+	<tableName>accounts</tableName>
+	<userName>abc</userName>
+	<password>xyz</password>
+	<driver>org.foo.Driver</driver>
+	<classpath>/usr/local/lib</classpath>
+      </DataSource>
+    </jdbc>
+    <option name="sample" type="int">100</option> <!-- java:comp/env/option/ -->
+  </resource>
+  <story>
+    <state></state>
+    <state></state>
+    <state></state>
+    <scene name=""></scene>
+  </story>
+</config>

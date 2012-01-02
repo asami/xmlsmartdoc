@@ -1,0 +1,63 @@
+<?xml version='1.0'?>
+<!--
+    Generator.xml
+
+    since   : Aug. 30, 1999
+    version : May.  8, 2004
+    author  : ASAMI, Tomoharu (asami@XMLSmartDoc.org)
+-->
+
+<map>
+  <entry>
+    <name>pure</name>
+    <class>org.xmlsmartdoc.SmartDoc.pure.PureConfig</class>
+  </entry>
+  <entry>
+	<name>plain</name>
+    <class>org.xmlsmartdoc.SmartDoc.plain.PlainConfig</class>
+  </entry>
+  <entry>
+    <name>html3</name>
+    <class>org.xmlsmartdoc.SmartDoc.html3.HTML3Config</class>
+  </entry>
+  <entry>
+    <name>html4</name>
+    <class>org.xmlsmartdoc.SmartDoc.html4.HTML4Config</class>
+  </entry>
+  <entry>
+    <name>cdf</name>
+    <class>org.xmlsmartdoc.SmartDoc.cdf.CDFConfig</class>
+  </entry>
+  <entry>
+    <name>latex2e</name>
+    <class>org.xmlsmartdoc.SmartDoc.latex2e.LaTeX2eConfig</class>
+  </entry>
+  <entry>
+    <name>javahelp</name>
+    <class>org.xmlsmartdoc.SmartDoc.javahelp.JavaHelpConfig</class>
+  </entry>
+  <entry>
+    <name>dvi</name>
+    <class>org.xmlsmartdoc.SmartDoc.dvi.DVIConfig</class>
+  </entry>
+  <entry>
+    <name>postscript</name>
+    <class>org.xmlsmartdoc.SmartDoc.postscript.PostScriptConfig</class>
+  </entry>
+  <entry>
+    <name>pdf</name>
+    <class>org.xmlsmartdoc.SmartDoc.pdf.PDFConfig</class>
+  </entry>
+  <entry>
+    <name>xslt</name>
+    <class>org.xmlsmartdoc.SmartDoc.xslt.XSLTConfig</class>
+  </entry>
+  <entry>
+    <name>document-v12</name>
+    <class>org.xmlsmartdoc.SmartDoc.forrest.DocumentV12Config</class>
+  </entry>
+  <entry>
+    <name>eclipsehelp</name>
+    <class>org.xmlsmartdoc.SmartDoc.eclipsehelp.EclipseHelpConfig</class>
+  </entry>
+</map>

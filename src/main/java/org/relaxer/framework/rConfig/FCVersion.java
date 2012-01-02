@@ -1,0 +1,1023 @@
+/*
+ * The Relaxer artifact
+ * Copyright (c) 2000-2004, ASAMI Tomoharu, All rights reserved.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * - Redistributions of source code must retain the above copyright
+ *   notice, this list of conditions and the following disclaimer. 
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+package org.relaxer.framework.rConfig;
+
+import java.io.*;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Writer;
+import java.net.URL;
+import javax.xml.parsers.*;
+import org.w3c.dom.*;
+import org.xml.sax.*;
+
+/**
+ * <b>FCVersion</b> is generated from config.rng by Relaxer.
+ * This class is derived from:
+ * 
+ * <!-- for programmer
+ * <element name="version">
+ *       <ref name="locale.attr"/>
+ *       <optional>
+ *         <attribute name="number">
+ *           <data type="token"/>
+ *         </attribute>
+ *       </optional>
+ *       <optional>
+ *         <attribute name="build">
+ *           <data type="token"/>
+ *         </attribute>
+ *       </optional>
+ *       <optional>
+ *         <attribute name="prologue">
+ *           <data type="token"/>
+ *         </attribute>
+ *       </optional>
+ *       <optional>
+ *         <attribute name="epilogue">
+ *           <data type="token"/>
+ *         </attribute>
+ *       </optional>
+ *       <text/>
+ *     </element>-->
+ * <!-- for javadoc -->
+ * <pre> &lt;element name="version"&gt;
+ *       &lt;ref name="locale.attr"/&gt;
+ *       &lt;optional&gt;
+ *         &lt;attribute name="number"&gt;
+ *           &lt;data type="token"/&gt;
+ *         &lt;/attribute&gt;
+ *       &lt;/optional&gt;
+ *       &lt;optional&gt;
+ *         &lt;attribute name="build"&gt;
+ *           &lt;data type="token"/&gt;
+ *         &lt;/attribute&gt;
+ *       &lt;/optional&gt;
+ *       &lt;optional&gt;
+ *         &lt;attribute name="prologue"&gt;
+ *           &lt;data type="token"/&gt;
+ *         &lt;/attribute&gt;
+ *       &lt;/optional&gt;
+ *       &lt;optional&gt;
+ *         &lt;attribute name="epilogue"&gt;
+ *           &lt;data type="token"/&gt;
+ *         &lt;/attribute&gt;
+ *       &lt;/optional&gt;
+ *       &lt;text/&gt;
+ *     &lt;/element&gt;</pre>
+ *
+ * @version config.rng (Tue Sep 07 10:36:39 JST 2004)
+ * @author  Relaxer 1.1b (http://www.relaxer.org)
+ */
+public class FCVersion extends org.relaxer.framework.rConfig.factory.ConfigNode implements java.io.Serializable, Cloneable, IRNSContainer, IREvaluatable, IRNode {
+    private RNSContext rNSContext_ = new RNSContext(this, "http://www.relaxer.org/xmlns/framework");
+    private String content_;
+    private String number_;
+    private String build_;
+    private String prologue_;
+    private String epilogue_;
+    private java.util.Locale locale_;
+    private IRNode parentRNode_;
+
+    /**
+     * Creates a <code>FCVersion</code>.
+     *
+     */
+    public FCVersion() {
+    }
+
+    /**
+     * Creates a <code>FCVersion</code>.
+     *
+     * @param source
+     */
+    public FCVersion(FCVersion source) {
+        setup(source);
+    }
+
+    /**
+     * Creates a <code>FCVersion</code> by the Stack <code>stack</code>
+     * that contains Elements.
+     * This constructor is supposed to be used internally
+     * by the Relaxer system.
+     *
+     * @param stack
+     */
+    public FCVersion(RStack stack) {
+        setup(stack);
+    }
+
+    /**
+     * Creates a <code>FCVersion</code> by the Document <code>doc</code>.
+     *
+     * @param doc
+     * @exception IOException
+     * @exception SAXException
+     * @exception ParserConfigurationException
+     * @exception org.iso_relax.verifier.VerifierConfigurationException
+     */
+    public FCVersion(Document doc) throws IOException, SAXException, ParserConfigurationException, org.iso_relax.verifier.VerifierConfigurationException {
+        setup(doc.getDocumentElement());
+    }
+
+    /**
+     * Creates a <code>FCVersion</code> by the Element <code>element</code>.
+     *
+     * @param element
+     * @exception IOException
+     * @exception SAXException
+     * @exception ParserConfigurationException
+     * @exception org.iso_relax.verifier.VerifierConfigurationException
+     */
+    public FCVersion(Element element) throws IOException, SAXException, ParserConfigurationException, org.iso_relax.verifier.VerifierConfigurationException {
+        setup(element);
+    }
+
+    /**
+     * Creates a <code>FCVersion</code> by the File <code>file</code>.
+     *
+     * @param file
+     * @exception IOException
+     * @exception SAXException
+     * @exception ParserConfigurationException
+     * @exception org.iso_relax.verifier.VerifierConfigurationException
+     */
+    public FCVersion(File file) throws IOException, SAXException, ParserConfigurationException, org.iso_relax.verifier.VerifierConfigurationException {
+        setup(file);
+    }
+
+    /**
+     * Creates a <code>FCVersion</code>
+     * by the String representation of URI <code>uri</code>.
+     *
+     * @param uri
+     * @exception IOException
+     * @exception SAXException
+     * @exception ParserConfigurationException
+     * @exception org.iso_relax.verifier.VerifierConfigurationException
+     */
+    public FCVersion(String uri) throws IOException, SAXException, ParserConfigurationException, org.iso_relax.verifier.VerifierConfigurationException {
+        setup(uri);
+    }
+
+    /**
+     * Creates a <code>FCVersion</code> by the URL <code>url</code>.
+     *
+     * @param url
+     * @exception IOException
+     * @exception SAXException
+     * @exception ParserConfigurationException
+     * @exception org.iso_relax.verifier.VerifierConfigurationException
+     */
+    public FCVersion(URL url) throws IOException, SAXException, ParserConfigurationException, org.iso_relax.verifier.VerifierConfigurationException {
+        setup(url);
+    }
+
+    /**
+     * Creates a <code>FCVersion</code> by the InputStream <code>in</code>.
+     *
+     * @param in
+     * @exception IOException
+     * @exception SAXException
+     * @exception ParserConfigurationException
+     * @exception org.iso_relax.verifier.VerifierConfigurationException
+     */
+    public FCVersion(InputStream in) throws IOException, SAXException, ParserConfigurationException, org.iso_relax.verifier.VerifierConfigurationException {
+        setup(in);
+    }
+
+    /**
+     * Creates a <code>FCVersion</code> by the InputSource <code>is</code>.
+     *
+     * @param is
+     * @exception IOException
+     * @exception SAXException
+     * @exception ParserConfigurationException
+     * @exception org.iso_relax.verifier.VerifierConfigurationException
+     */
+    public FCVersion(InputSource is) throws IOException, SAXException, ParserConfigurationException, org.iso_relax.verifier.VerifierConfigurationException {
+        setup(is);
+    }
+
+    /**
+     * Creates a <code>FCVersion</code> by the Reader <code>reader</code>.
+     *
+     * @param reader
+     * @exception IOException
+     * @exception SAXException
+     * @exception ParserConfigurationException
+     * @exception org.iso_relax.verifier.VerifierConfigurationException
+     */
+    public FCVersion(Reader reader) throws IOException, SAXException, ParserConfigurationException, org.iso_relax.verifier.VerifierConfigurationException {
+        setup(reader);
+    }
+
+    /**
+     * Initializes the <code>FCVersion</code> by the FCVersion <code>source</code>.
+     *
+     * @param source
+     */
+    public void setup(FCVersion source) {
+        int size;
+        content_ = source.content_;
+        number_ = source.number_;
+        build_ = source.build_;
+        prologue_ = source.prologue_;
+        epilogue_ = source.epilogue_;
+        locale_ = source.locale_;
+    }
+
+    /**
+     * Initializes the <code>FCVersion</code> by the Document <code>doc</code>.
+     *
+     * @param doc
+     * @exception IOException
+     * @exception SAXException
+     * @exception ParserConfigurationException
+     * @exception org.iso_relax.verifier.VerifierConfigurationException
+     */
+    public void setup(Document doc) throws IOException, SAXException, ParserConfigurationException, org.iso_relax.verifier.VerifierConfigurationException {
+        setup(doc.getDocumentElement());
+    }
+
+    /**
+     * Initializes the <code>FCVersion</code> by the Element <code>element</code>.
+     *
+     * @param element
+     * @exception IOException
+     * @exception SAXException
+     * @exception ParserConfigurationException
+     * @exception org.iso_relax.verifier.VerifierConfigurationException
+     */
+    public void setup(Element element) throws IOException, SAXException, ParserConfigurationException, org.iso_relax.verifier.VerifierConfigurationException {
+        IConfigFactory factory = ConfigFactory.getFactory();
+        org.iso_relax.verifier.Verifier verifier = factory.getVerifier();
+        if (verifier != null) {
+            verifier.verify(element);
+        } else {
+            UIsoRelax.verifyElementByResource("/org/relaxer/framework/rConfig/config.rng", element, factory.getErrorHandler());
+        }
+        init(element);
+    }
+
+    /**
+     * Initializes the <code>FCVersion</code> by the Stack <code>stack</code>
+     * that contains Elements.
+     * This constructor is supposed to be used internally
+     * by the Relaxer system.
+     *
+     * @param stack
+     */
+    public void setup(RStack stack) {
+        init(stack.popElement());
+    }
+
+    /**
+     * @param element
+     */
+    private void init(Element element) {
+        IConfigFactory factory = ConfigFactory.getFactory();
+        RStack stack = new RStack(element);
+        rNSContext_.declareNamespace(element);
+        content_ = URelaxer.getElementPropertyAsString(element);
+        number_ = URelaxer.getAttributePropertyAsString(element, "number");
+        build_ = URelaxer.getAttributePropertyAsString(element, "build");
+        prologue_ = URelaxer.getAttributePropertyAsString(element, "prologue");
+        epilogue_ = URelaxer.getAttributePropertyAsString(element, "epilogue");
+        locale_ = URelaxer.getAttributePropertyAsLocale(element, "locale");
+    }
+
+    /**
+     * @return Object
+     */
+    public Object clone() {
+        IConfigFactory factory = ConfigFactory.getFactory();
+        return (factory.createFCVersion((FCVersion)this));
+    }
+
+    /**
+     * Creates a DOM representation of the object.
+     * Result is appended to the Node <code>parent</code>.
+     *
+     * @param parent
+     */
+    public void makeElement(Node parent) {
+        Document doc;
+        if (parent instanceof Document) {
+            doc = (Document)parent;
+        } else {
+            doc = parent.getOwnerDocument();
+        }
+        Element element = doc.createElementNS("http://www.relaxer.org/xmlns/framework", "version");
+        rNSContext_.setupNamespace(element);
+        URelaxer.setElementPropertyByString(element, this.content_);
+        int size;
+        if (this.number_ != null) {
+            URelaxer.setAttributePropertyByString(element, "number", this.number_);
+        }
+        if (this.build_ != null) {
+            URelaxer.setAttributePropertyByString(element, "build", this.build_);
+        }
+        if (this.prologue_ != null) {
+            URelaxer.setAttributePropertyByString(element, "prologue", this.prologue_);
+        }
+        if (this.epilogue_ != null) {
+            URelaxer.setAttributePropertyByString(element, "epilogue", this.epilogue_);
+        }
+        if (this.locale_ != null) {
+            URelaxer.setAttributePropertyByLocale(element, "locale", this.locale_);
+        }
+        parent.appendChild(element);
+    }
+
+    /**
+     * Initializes the <code>FCVersion</code> by the File <code>file</code>.
+     *
+     * @param file
+     * @exception IOException
+     * @exception SAXException
+     * @exception ParserConfigurationException
+     * @exception org.iso_relax.verifier.VerifierConfigurationException
+     */
+    public void setup(File file) throws IOException, SAXException, ParserConfigurationException, org.iso_relax.verifier.VerifierConfigurationException {
+        setup(file.toURL());
+    }
+
+    /**
+     * Initializes the <code>FCVersion</code>
+     * by the String representation of URI <code>uri</code>.
+     *
+     * @param uri
+     * @exception IOException
+     * @exception SAXException
+     * @exception ParserConfigurationException
+     * @exception org.iso_relax.verifier.VerifierConfigurationException
+     */
+    public void setup(String uri) throws IOException, SAXException, ParserConfigurationException, org.iso_relax.verifier.VerifierConfigurationException {
+        setup(UJAXP.getDocument(uri, UJAXP.FLAG_NAMESPACE_AWARE));
+    }
+
+    /**
+     * Initializes the <code>FCVersion</code> by the URL <code>url</code>.
+     *
+     * @param url
+     * @exception IOException
+     * @exception SAXException
+     * @exception ParserConfigurationException
+     * @exception org.iso_relax.verifier.VerifierConfigurationException
+     */
+    public void setup(URL url) throws IOException, SAXException, ParserConfigurationException, org.iso_relax.verifier.VerifierConfigurationException {
+        setup(UJAXP.getDocument(url, UJAXP.FLAG_NAMESPACE_AWARE));
+    }
+
+    /**
+     * Initializes the <code>FCVersion</code> by the InputStream <code>in</code>.
+     *
+     * @param in
+     * @exception IOException
+     * @exception SAXException
+     * @exception ParserConfigurationException
+     * @exception org.iso_relax.verifier.VerifierConfigurationException
+     */
+    public void setup(InputStream in) throws IOException, SAXException, ParserConfigurationException, org.iso_relax.verifier.VerifierConfigurationException {
+        setup(UJAXP.getDocument(in, UJAXP.FLAG_NAMESPACE_AWARE));
+    }
+
+    /**
+     * Initializes the <code>FCVersion</code> by the InputSource <code>is</code>.
+     *
+     * @param is
+     * @exception IOException
+     * @exception SAXException
+     * @exception ParserConfigurationException
+     * @exception org.iso_relax.verifier.VerifierConfigurationException
+     */
+    public void setup(InputSource is) throws IOException, SAXException, ParserConfigurationException, org.iso_relax.verifier.VerifierConfigurationException {
+        setup(UJAXP.getDocument(is, UJAXP.FLAG_NAMESPACE_AWARE));
+    }
+
+    /**
+     * Initializes the <code>FCVersion</code> by the Reader <code>reader</code>.
+     *
+     * @param reader
+     * @exception IOException
+     * @exception SAXException
+     * @exception ParserConfigurationException
+     * @exception org.iso_relax.verifier.VerifierConfigurationException
+     */
+    public void setup(Reader reader) throws IOException, SAXException, ParserConfigurationException, org.iso_relax.verifier.VerifierConfigurationException {
+        setup(UJAXP.getDocument(reader, UJAXP.FLAG_NAMESPACE_AWARE));
+    }
+
+    /**
+     * Creates a DOM document representation of the object.
+     *
+     * @exception ParserConfigurationException
+     * @return Document
+     */
+    public Document makeDocument() throws ParserConfigurationException {
+        Document doc = UJAXP.makeDocument();
+        makeElement(doc);
+        return (doc);
+    }
+
+    /**
+     * Gets the RNSContext property <b>RNSContext</b>.
+     *
+     * @return RNSContext
+     */
+    public RNSContext rGetRNSContext() {
+        return (rNSContext_);
+    }
+
+    /**
+     * Sets the RNSContext property <b>RNSContext</b>.
+     *
+     * @param rNSContext
+     */
+    public void rSetRNSContext(RNSContext rNSContext) {
+        this.rNSContext_ = rNSContext;
+    }
+
+    /**
+     * Gets the String property <b>content</b>.
+     *
+     * @return String
+     */
+    public String getContent() {
+        return (content_);
+    }
+
+    /**
+     * Sets the String property <b>content</b>.
+     *
+     * @param content
+     */
+    public void setContent(String content) {
+        this.content_ = content;
+    }
+
+    /**
+     * Gets the String property <b>number</b>.
+     *
+     * @return String
+     */
+    public String getNumber() {
+        return (number_);
+    }
+
+    /**
+     * Sets the String property <b>number</b>.
+     *
+     * @param number
+     */
+    public void setNumber(String number) {
+        this.number_ = number;
+    }
+
+    /**
+     * Gets the String property <b>build</b>.
+     *
+     * @return String
+     */
+    public String getBuild() {
+        return (build_);
+    }
+
+    /**
+     * Sets the String property <b>build</b>.
+     *
+     * @param build
+     */
+    public void setBuild(String build) {
+        this.build_ = build;
+    }
+
+    /**
+     * Gets the String property <b>prologue</b>.
+     *
+     * @return String
+     */
+    public String getPrologue() {
+        return (prologue_);
+    }
+
+    /**
+     * Sets the String property <b>prologue</b>.
+     *
+     * @param prologue
+     */
+    public void setPrologue(String prologue) {
+        this.prologue_ = prologue;
+    }
+
+    /**
+     * Gets the String property <b>epilogue</b>.
+     *
+     * @return String
+     */
+    public String getEpilogue() {
+        return (epilogue_);
+    }
+
+    /**
+     * Sets the String property <b>epilogue</b>.
+     *
+     * @param epilogue
+     */
+    public void setEpilogue(String epilogue) {
+        this.epilogue_ = epilogue;
+    }
+
+    /**
+     * Gets the java.util.Locale property <b>locale</b>.
+     *
+     * @return java.util.Locale
+     */
+    public java.util.Locale getLocale() {
+        return (locale_);
+    }
+
+    /**
+     * Sets the java.util.Locale property <b>locale</b>.
+     *
+     * @param locale
+     */
+    public void setLocale(java.util.Locale locale) {
+        this.locale_ = locale;
+    }
+
+    /**
+     * Makes an XML text representation.
+     *
+     * @return String
+     */
+    public String makeTextDocument() {
+        StringBuffer buffer = new StringBuffer();
+        makeTextElement(buffer);
+        return (new String(buffer));
+    }
+
+    /**
+     * Makes an XML text representation.
+     *
+     * @param buffer
+     */
+    public void makeTextElement(StringBuffer buffer) {
+        int size;
+        String prefix = rNSContext_.getPrefixByUri("http://www.relaxer.org/xmlns/framework");
+        buffer.append("<");
+        URelaxer.makeQName(prefix, "version", buffer);
+        rNSContext_.makeNSMappings(buffer);
+        if (number_ != null) {
+            buffer.append(" ");
+            buffer.append("number");
+            buffer.append("=\"");
+            buffer.append(URelaxer.escapeAttrQuot(URelaxer.getString(getNumber())));
+            buffer.append("\"");
+        }
+        if (build_ != null) {
+            buffer.append(" ");
+            buffer.append("build");
+            buffer.append("=\"");
+            buffer.append(URelaxer.escapeAttrQuot(URelaxer.getString(getBuild())));
+            buffer.append("\"");
+        }
+        if (prologue_ != null) {
+            buffer.append(" ");
+            buffer.append("prologue");
+            buffer.append("=\"");
+            buffer.append(URelaxer.escapeAttrQuot(URelaxer.getString(getPrologue())));
+            buffer.append("\"");
+        }
+        if (epilogue_ != null) {
+            buffer.append(" ");
+            buffer.append("epilogue");
+            buffer.append("=\"");
+            buffer.append(URelaxer.escapeAttrQuot(URelaxer.getString(getEpilogue())));
+            buffer.append("\"");
+        }
+        if (locale_ != null) {
+            buffer.append(" ");
+            rNSContext_.makeQName("", "locale", buffer);
+            buffer.append("=\"");
+            buffer.append(URelaxer.getString(getLocale()));
+            buffer.append("\"");
+        }
+        buffer.append(">");
+        buffer.append(URelaxer.escapeCharData(URelaxer.getString(getContent())));
+        buffer.append("</");
+        URelaxer.makeQName(prefix, "version", buffer);
+        buffer.append(">");
+    }
+
+    /**
+     * Makes an XML text representation.
+     *
+     * @param buffer
+     * @exception IOException
+     */
+    public void makeTextElement(Writer buffer) throws IOException {
+        int size;
+        String prefix = rNSContext_.getPrefixByUri("http://www.relaxer.org/xmlns/framework");
+        buffer.write("<");
+        URelaxer.makeQName(prefix, "version", buffer);
+        rNSContext_.makeNSMappings(buffer);
+        if (number_ != null) {
+            buffer.write(" ");
+            buffer.write("number");
+            buffer.write("=\"");
+            buffer.write(URelaxer.escapeAttrQuot(URelaxer.getString(getNumber())));
+            buffer.write("\"");
+        }
+        if (build_ != null) {
+            buffer.write(" ");
+            buffer.write("build");
+            buffer.write("=\"");
+            buffer.write(URelaxer.escapeAttrQuot(URelaxer.getString(getBuild())));
+            buffer.write("\"");
+        }
+        if (prologue_ != null) {
+            buffer.write(" ");
+            buffer.write("prologue");
+            buffer.write("=\"");
+            buffer.write(URelaxer.escapeAttrQuot(URelaxer.getString(getPrologue())));
+            buffer.write("\"");
+        }
+        if (epilogue_ != null) {
+            buffer.write(" ");
+            buffer.write("epilogue");
+            buffer.write("=\"");
+            buffer.write(URelaxer.escapeAttrQuot(URelaxer.getString(getEpilogue())));
+            buffer.write("\"");
+        }
+        if (locale_ != null) {
+            buffer.write(" ");
+            rNSContext_.makeQName("", "locale", buffer);
+            buffer.write("=\"");
+            buffer.write(URelaxer.getString(getLocale()));
+            buffer.write("\"");
+        }
+        buffer.write(">");
+        buffer.write(URelaxer.escapeCharData(URelaxer.getString(getContent())));
+        buffer.write("</");
+        URelaxer.makeQName(prefix, "version", buffer);
+        buffer.write(">");
+    }
+
+    /**
+     * Makes an XML text representation.
+     *
+     * @param buffer
+     */
+    public void makeTextElement(PrintWriter buffer) {
+        int size;
+        String prefix = rNSContext_.getPrefixByUri("http://www.relaxer.org/xmlns/framework");
+        buffer.print("<");
+        URelaxer.makeQName(prefix, "version", buffer);
+        rNSContext_.makeNSMappings(buffer);
+        if (number_ != null) {
+            buffer.print(" ");
+            buffer.print("number");
+            buffer.print("=\"");
+            buffer.print(URelaxer.escapeAttrQuot(URelaxer.getString(getNumber())));
+            buffer.print("\"");
+        }
+        if (build_ != null) {
+            buffer.print(" ");
+            buffer.print("build");
+            buffer.print("=\"");
+            buffer.print(URelaxer.escapeAttrQuot(URelaxer.getString(getBuild())));
+            buffer.print("\"");
+        }
+        if (prologue_ != null) {
+            buffer.print(" ");
+            buffer.print("prologue");
+            buffer.print("=\"");
+            buffer.print(URelaxer.escapeAttrQuot(URelaxer.getString(getPrologue())));
+            buffer.print("\"");
+        }
+        if (epilogue_ != null) {
+            buffer.print(" ");
+            buffer.print("epilogue");
+            buffer.print("=\"");
+            buffer.print(URelaxer.escapeAttrQuot(URelaxer.getString(getEpilogue())));
+            buffer.print("\"");
+        }
+        if (locale_ != null) {
+            buffer.print(" ");
+            rNSContext_.makeQName("", "locale", buffer);
+            buffer.print("=\"");
+            buffer.print(URelaxer.getString(getLocale()));
+            buffer.print("\"");
+        }
+        buffer.print(">");
+        buffer.print(URelaxer.escapeCharData(URelaxer.getString(getContent())));
+        buffer.print("</");
+        URelaxer.makeQName(prefix, "version", buffer);
+        buffer.print(">");
+    }
+
+    /**
+     * Makes an XML text representation.
+     *
+     * @param buffer
+     */
+    public void makeTextAttribute(StringBuffer buffer) {
+    }
+
+    /**
+     * Makes an XML text representation.
+     *
+     * @param buffer
+     * @exception IOException
+     */
+    public void makeTextAttribute(Writer buffer) throws IOException {
+    }
+
+    /**
+     * Makes an XML text representation.
+     *
+     * @param buffer
+     */
+    public void makeTextAttribute(PrintWriter buffer) {
+    }
+
+    /**
+     * Gets the property value as String.
+     *
+     * @return String
+     */
+    public String getContentAsString() {
+        return (URelaxer.getString(getContent()));
+    }
+
+    /**
+     * Gets the property value as String.
+     *
+     * @return String
+     */
+    public String getNumberAsString() {
+        return (URelaxer.getString(getNumber()));
+    }
+
+    /**
+     * Gets the property value as String.
+     *
+     * @return String
+     */
+    public String getBuildAsString() {
+        return (URelaxer.getString(getBuild()));
+    }
+
+    /**
+     * Gets the property value as String.
+     *
+     * @return String
+     */
+    public String getPrologueAsString() {
+        return (URelaxer.getString(getPrologue()));
+    }
+
+    /**
+     * Gets the property value as String.
+     *
+     * @return String
+     */
+    public String getEpilogueAsString() {
+        return (URelaxer.getString(getEpilogue()));
+    }
+
+    /**
+     * Gets the property value as String.
+     *
+     * @return String
+     */
+    public String getLocaleAsString() {
+        return (URelaxer.getString(getLocale()));
+    }
+
+    /**
+     * Sets the property value by String.
+     *
+     * @param string
+     */
+    public void setContentByString(String string) {
+        setContent(string);
+    }
+
+    /**
+     * Sets the property value by String.
+     *
+     * @param string
+     */
+    public void setNumberByString(String string) {
+        setNumber(string);
+    }
+
+    /**
+     * Sets the property value by String.
+     *
+     * @param string
+     */
+    public void setBuildByString(String string) {
+        setBuild(string);
+    }
+
+    /**
+     * Sets the property value by String.
+     *
+     * @param string
+     */
+    public void setPrologueByString(String string) {
+        setPrologue(string);
+    }
+
+    /**
+     * Sets the property value by String.
+     *
+     * @param string
+     */
+    public void setEpilogueByString(String string) {
+        setEpilogue(string);
+    }
+
+    /**
+     * Sets the property value by String.
+     *
+     * @param string
+     */
+    public void setLocaleByString(String string) {
+        setLocale(URelaxer.getLocale(string));
+    }
+
+    /**
+     * Returns a String representation of this object.
+     * While this method informs as XML format representaion, 
+     *  it's purpose is just information, not making 
+     * a rigid XML documentation.
+     *
+     * @return String
+     */
+    public String toString() {
+        try {
+            return (makeTextDocument());
+        } catch (Exception e) {
+            return (super.toString());
+        }
+    }
+
+    /**
+     * Evaluates the node.
+     *
+     * @exception REvaluationException
+     * @return Object
+     */
+    public Object eval() throws REvaluationException {
+        return (eval(new RSimpleEvaluationContext()));
+    }
+
+    /**
+     * Evaluates the node with the evaluation context.
+     *
+     * @param context
+     * @exception REvaluationException
+     * @return Object
+     */
+    public Object eval(IREvaluationContext context) throws REvaluationException {
+        IRNode[] children = rGetRNodes();
+        Object[] params = new Object[children.length];
+        for (int i = 0;i < children.length;i++) {
+            IRNode child = children[i];
+            if (child instanceof IREvaluatable) {
+                params[i] = ((IREvaluatable)child).eval(context);
+            } else {
+                params[i] = child;
+            }
+        }
+        return (eval(params, context));
+    }
+
+    /**
+     * Evaluates against the params.
+     *
+     * @param params
+     * @param context
+     * @exception REvaluationException
+     * @return Object
+     */
+    public Object eval(Object[] params, IREvaluationContext context) throws REvaluationException {
+        return (this);
+    }
+
+    /**
+     * Gets the IRNode property <b>parentRNode</b>.
+     *
+     * @return IRNode
+     */
+    public IRNode rGetParentRNode() {
+        return (parentRNode_);
+    }
+
+    /**
+     * Sets the IRNode property <b>parentRNode</b>.
+     *
+     * @param parentRNode
+     */
+    public void rSetParentRNode(IRNode parentRNode) {
+        this.parentRNode_ = parentRNode;
+    }
+
+    /**
+     * Gets child RNodes.
+     *
+     * @return IRNode[]
+     */
+    public IRNode[] rGetRNodes() {
+        java.util.List classNodes = new java.util.ArrayList();
+        IRNode[] nodes = new IRNode[classNodes.size()];
+        return ((IRNode[])classNodes.toArray(nodes));
+    }
+
+    /**
+     * Tests if a Element <code>element</code> is valid
+     * for the <code>FCVersion</code>.
+     *
+     * @param element
+     * @return boolean
+     */
+    public static boolean isMatch(Element element) {
+        if (!URelaxer2.isTargetElement(element, "http://www.relaxer.org/xmlns/framework", "version")) {
+            return (false);
+        }
+        RStack target = new RStack(element);
+        boolean $match$ = false;
+        IConfigFactory factory = ConfigFactory.getFactory();
+        Element child;
+        if (!target.isEmptyElement()) {
+            return (false);
+        }
+        return (true);
+    }
+
+    /**
+     * Tests if elements contained in a Stack <code>stack</code>
+     * is valid for the <code>FCVersion</code>.
+     * This mehtod is supposed to be used internally
+     * by the Relaxer system.
+     *
+     * @param stack
+     * @return boolean
+     */
+    public static boolean isMatch(RStack stack) {
+        Element element = stack.peekElement();
+        if (element == null) {
+            return (false);
+        }
+        return (isMatch(element));
+    }
+
+    /**
+     * Tests if elements contained in a Stack <code>stack</code>
+     * is valid for the <code>FCVersion</code>.
+     * This method consumes the stack contents during matching operation.
+     * This mehtod is supposed to be used internally
+     * by the Relaxer system.
+     *
+     * @param stack
+     * @return boolean
+     */
+    public static boolean isMatchHungry(RStack stack) {
+        Element element = stack.peekElement();
+        if (element == null) {
+            return (false);
+        }
+        if (isMatch(element)) {
+            stack.popElement();
+            return (true);
+        } else {
+            return (false);
+        }
+    }
+}
