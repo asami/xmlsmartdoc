@@ -16,7 +16,8 @@ import javax.sql.XADataSource;
  * XaDataSourceDataSource
  *
  * @since   2004/03/10
- * @version 2004/03/10
+ *  version 2004/03/10
+ * @version Jan.  3, 2012
  * @author  ASAMI, Tomoharu (asami@relaxer.org)
  */
 public class XaDataSourceDataSource implements DataSource {
@@ -60,4 +61,11 @@ public class XaDataSourceDataSource implements DataSource {
         throw (new UnsupportedOperationException());
     }
 
+    public boolean isWrapperFor(Class<?> iface) {
+        throw (new UnsupportedOperationException());
+    }
+
+    public <T> T unwrap(Class<T> iface) {
+        throw (new UnsupportedOperationException());
+    }
 }

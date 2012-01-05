@@ -35,7 +35,8 @@ import com.AsamiOffice.io.UIO;
  * RJFDataSource
  *
  * @since   May.  2, 2003
- * @version Sep.  7, 2004
+ *  version Sep.  7, 2004
+ * @version Jan.  3, 2012
  * @author  ASAMI, Tomoharu (asami@relaxer.org)
  */
 public class RJFDataSource implements DataSource {
@@ -163,5 +164,13 @@ public class RJFDataSource implements DataSource {
 
     public int getLoginTimeout() throws SQLException {
         return (timeout_);
+    }
+
+    public boolean isWrapperFor(Class<?> iface) {
+        throw (new UnsupportedOperationException());
+    }
+
+    public <T> T unwrap(Class<T> iface) {
+        throw (new UnsupportedOperationException());
     }
 }

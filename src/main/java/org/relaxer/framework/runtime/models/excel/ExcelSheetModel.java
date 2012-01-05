@@ -20,7 +20,8 @@ import com.AsamiOffice.util.D2Array;
  * ExcelSheetModel
  *
  * @since   Aug. 12, 2005
- * @version Sep.  7, 2005
+ *  version Sep.  7, 2005
+ * @version Jan.  3, 2012
  * @author  ASAMI, Tomoharu (asami@relaxer.org)
  */
 public class ExcelSheetModel extends AbstractRTableModel {
@@ -149,7 +150,8 @@ public class ExcelSheetModel extends AbstractRTableModel {
                     if (cell == null) {
                         cell = row.createCell(x);
                     }
-                    cell.setEncoding(HSSFCell.ENCODING_UTF_16);
+                    // 2012-01-03
+                    // cell.setEncoding(HSSFCell.ENCODING_UTF_16);
                     cell.setCellValue(value);
                 } else {
                     if (cell != null) {
