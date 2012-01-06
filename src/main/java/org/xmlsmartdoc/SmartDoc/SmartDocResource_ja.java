@@ -25,7 +25,8 @@ import java.io.*;
  * SmartDocResource_ja
  *
  * @since   Aug. 15, 1999
- * @version Oct. 22, 2003
+ *  version Oct. 22, 2003
+ * @version Jan.  6, 2012
  * @author  ASAMI, Tomoharu (asami@XMLSmartDoc.org)
  */
 public class SmartDocResource_ja extends AbstractSmartDocResource {
@@ -52,19 +53,19 @@ public class SmartDocResource_ja extends AbstractSmartDocResource {
     }
 
     public String getYearLabel(int year) {
-	return (year + "\u5e74"); // îN
+	return (year + "\u5e74"); // Âπ¥
     }
 
     public String getMonthLabel(int month) {
-	return (month + "\u6708\u53f7"); // åéçÜ
+	return (month + "\u6708\u53f7"); // ÊúàÂè∑
     }
 
     public String getEditionLabel(int edition) {
-	return ("\u7b2c" + edition + "\u7248"); // ëÊ/î≈
+	return ("\u7b2c" + edition + "\u7248"); // Á¨¨/Áâà
     }
 
     public String getEditorLabel() {
-	return ("(\u7de8)"); // ï“
+	return ("(\u7de8)"); // Á∑®
     }
 
     public String getEditorsLabel() {

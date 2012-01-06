@@ -8,6 +8,8 @@ scalacOptions += "-deprecation"
 
 scalacOptions += "-unchecked"
 
+resolvers += "Scala-Tools Maven2 Snapshots Repository" at "http://www.asamioffice.com/maven"
+
 libraryDependencies += "oro" % "oro" % "2.0.8"
 
 libraryDependencies += "commons-beanutils" % "commons-beanutils" % "20030211.134440"
@@ -21,3 +23,11 @@ libraryDependencies += "javax.servlet" % "servlet-api" % "2.5" % "provided"
 libraryDependencies += "org.apache.ant" % "ant" % "1.8.2" % "provided"
 
 libraryDependencies += "junit" % "junit" % "4.8" % "test"
+
+//
+
+libraryDependencies += "relaxerorg" % "relaxerorg" % "1.0"
+
+libraryDependencies += "isorelax" % "isorelax" % "1.0"
+
+libraryDependencies += "tex2mathml" % "tex2mathml" % "1.0"
