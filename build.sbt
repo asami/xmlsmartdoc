@@ -8,7 +8,7 @@ scalacOptions += "-deprecation"
 
 scalacOptions += "-unchecked"
 
-resolvers += "Scala-Tools Maven2 Snapshots Repository" at "http://www.asamioffice.com/maven"
+resolvers += "Asami Maven Repository" at "http://www.asamioffice.com/maven"
 
 libraryDependencies += "oro" % "oro" % "2.0.8"
 
