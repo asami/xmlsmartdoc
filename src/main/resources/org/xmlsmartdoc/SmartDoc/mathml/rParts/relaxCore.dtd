@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+DTD for RELAX Core (Ver 1.0)
+$Id: relaxCore.dtd 1.16 2000/04/16 04:29:30 murata Exp $
+-->
+
+<!ENTITY % datatype "User_defined_datatypes_are_disallowed_at_least_now">
+<!ENTITY % datatype-definitions SYSTEM "datatypes.dtd">
+%datatype-definitions;
+
+<!--*******************************************************-->
+<!--                                                       -->  
+<!--         The overall structure of RELAX modules.       -->
+<!--                                                       -->  
+<!--*******************************************************-->
+
+<!ELEMENT interface (annotation?, (export | div)*)>
+
+<!ENTITY % clause "(tag|attPool)">
+
+<!ENTITY % rule "(elementRule|hedgeRule)">
+
+<!ELEMENT module (annotation?, interface?, 
+                       (%clause; | %rule; | div | include )*)>
+
+<!ATTLIST module
+                 moduleVersion    CDATA      #IMPLIED
+                 relaxCoreVersion CDATA      #IMPLIED
+                 targetNamespace  CDATA      #IMPLIED
+                 xmlns            CDATA      #FIXED "http://www.xml.gr.jp/xmlns/relaxCore"
+>
+        
+<!--*******************************************************-->
+<!--                                                       -->  
+<!--                          div                          -->
+<!--                                                       -->  
+<!--*******************************************************-->
+
+<!ELEMENT div (annotation?, ((%rule; |%clause; | include | div)*
+			     | (export | div)*))>
+
+<!-- 
+
+(%rule; |%clause; | include | div)* is used when a div appears in a
+module body, while (export | div)* is used when it appears in an
+interface element.
+
+ -->
+
+        
+
+<!--*******************************************************-->
+<!--                                                       -->  
+<!--                       Interface                       -->
+<!--                                                       -->  
+<!--*******************************************************-->
+
+<!ELEMENT export ((%annotation;)?)>
+<!ATTLIST export label NMTOKEN #REQUIRED>
+
+<!--*******************************************************-->
+<!--                                                       -->  
+<!--                       Include                         -->
+<!--                                                       -->  
+<!--*******************************************************-->
+
+<!ELEMENT include ((%annotation;)?)>
+<!ATTLIST include moduleLocation CDATA #REQUIRED>
+
+
+<!--*******************************************************-->
+<!--                                                       -->  
+<!--                    Hedge Models                       -->
+<!--                                                       -->  
+<!--*******************************************************-->
+
+<!-- The parameter entity "particle" is used to describe element hedge
+models.  It is also used as subordinates of <sequence>, <choice>,
+and <mixed>. -->
+
+<!ENTITY % particle "(ref | hedgeRef | choice | sequence | element 
+			  | none | empty)">
+
+<!ENTITY % hedgeModel 
+	"(%particle;  | mixed)">
+
+<!-- The parameter entity "repeatable" is used to specify the "occurs"
+ attribute, which is shared by several elements.  Permissible values
+ are either "?", "+", or "*".  -->
+
+<!ENTITY % repeatable '
+                 occurs       CDATA      #IMPLIED
+'>
+
+
+<!ELEMENT hedgeRef EMPTY >
+<!ATTLIST hedgeRef 
+                 label      NMTOKEN      #IMPLIED
+                 %repeatable;
+>
+
+<!ELEMENT ref EMPTY >
+<!ATTLIST ref 
+                 label      NMTOKEN      #IMPLIED
+                 role       NMTOKEN      #IMPLIED
+                 %repeatable;
+>
+
+<!ELEMENT empty EMPTY >
+
+<!ELEMENT choice (%particle;)* >
+<!ATTLIST choice
+                 %repeatable;
+>
+
+<!ELEMENT sequence (%particle;)* >
+<!ATTLIST sequence
+                 %repeatable;
+>
+
+<!ELEMENT none EMPTY>
+
+<!ELEMENT mixed (%particle;) >
+
+<!ELEMENT element ((%annotation;)?, (%facet;)*)>
+<!ATTLIST element 
+                 name     NMTOKEN #REQUIRED
+                 type     NMTOKEN #IMPLIED
+                 label    NMTOKEN #IMPLIED
+                 %repeatable;
+>
+
+
+<!--*******************************************************-->
+<!--                                                       -->  
+<!--                       Rules                           -->
+<!--                                                       -->  
+<!--*******************************************************-->
+
+<!ELEMENT elementRule ((%annotation;)?,
+				(tag* | attPool*), 
+				((%hedgeModel;)? | (%facet;)*))>
+
+<!ATTLIST elementRule 
+		role        NMTOKEN #IMPLIED
+		label       NMTOKEN #IMPLIED
+                type        NMTOKEN #IMPLIED
+>
+
+<!ELEMENT hedgeRule  ((%annotation;)?, %particle;) >
+<!ATTLIST hedgeRule
+                label       NMTOKEN #REQUIRED
+>
+
+
+<!--*******************************************************-->
+<!--                                                       -->  
+<!--                        Clauses                        -->
+<!--                                                       -->  
+<!--*******************************************************-->
+
+<!ENTITY % clauseBody "((%annotation;)?, ref*, attribute*)">
+
+<!ELEMENT tag  (%clauseBody;)>
+<!ATTLIST tag
+                 role     NMTOKEN      #IMPLIED
+                 name     NMTOKEN      #REQUIRED
+>
+
+<!ELEMENT attPool (%clauseBody;)>
+<!ATTLIST attPool
+                 role  NMTOKEN      #REQUIRED
+>
+
+<!ELEMENT attribute ((%annotation;)?, (%facet;)*) >
+<!ATTLIST attribute
+                 name      NMTOKEN      #REQUIRED
+                 required   (true)      #IMPLIED
+                 type      NMTOKEN      #IMPLIED
+>

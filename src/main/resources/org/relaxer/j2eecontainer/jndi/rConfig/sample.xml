@@ -1,0 +1,28 @@
+<config>
+  <provider name='java'>
+    <context name='comp/env/jdbc'>
+      <DataSource name='mydb'>
+        <url>jdbc:idb:foo.prp</url>
+        <tableName>accounts</tableName>
+        <userName>abc</userName>
+        <password>xyz</password>
+        <driver>org.foo.Driver</driver>
+        <classpath>/usr/local/lib</classpath>
+      </DataSource>
+      <XADataSource name='yourdb'>
+        <url>jdbc:idb:foo.prp</url>
+        <tableName>accounts</tableName>
+        <userName>abc</userName>
+        <password>xyz</password>
+        <driver>org.foo.Driver</driver>
+        <classpath>/usr/local/lib</classpath>
+      </XADataSource>
+    </context>
+    <context name='comp/env/bean'>
+      <Bean name='Calc'>
+        <property name='a' value='b'/>
+      </Bean>
+    </context>
+  </provider>
+</config>
+

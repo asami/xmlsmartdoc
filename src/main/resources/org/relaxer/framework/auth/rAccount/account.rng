@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
+         xmlns:java="http://www.relaxer.org/xmlns/relaxer/java"
+         xmlns:sql="http://www.relaxer.org/xmlns/relaxer/sql"
+         ns="http://www.relaxer.org/xmlns/framework/account">
+<!--
+Sep.  8, 2002
+Sep.  9, 2003
+-->
+  <start>
+    <choice>
+      <ref name="accounts"/>
+      <ref name="account"/>
+    </choice>
+  </start>
+  <define name="accounts">
+    <element name="accounts">
+      <oneOrMore>
+        <ref name="account"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="account">
+    <element name="account">
+      <attribute name="name" java:mapKey="true" sql:primary="true">
+        <data type="token"/>
+      </attribute>
+      <attribute name="password">
+        <data type="token"/>
+      </attribute>
+      <zeroOrMore>
+        <ref name="other"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="other">
+    <zeroOrMore>
+      <element>
+        <anyName>
+          <except>
+            <nsName/>
+          </except>
+        </anyName>
+        <zeroOrMore>
+          <choice>
+            <attribute>
+              <anyName/>
+            </attribute>
+            <text/>
+            <ref name="any"/>
+          </choice>
+        </zeroOrMore>
+      </element>
+    </zeroOrMore>
+  </define>
+  <define name="any">
+    <element>
+      <anyName/>
+      <zeroOrMore>
+        <choice>
+          <attribute>
+            <anyName/>
+          </attribute>
+          <text/>
+          <ref name="any"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+</grammar>

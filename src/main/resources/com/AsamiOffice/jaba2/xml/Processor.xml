@@ -1,0 +1,24 @@
+<?xml version='1.0'?>
+
+<map>
+  <entry>
+    <name>xml4j1</name>
+    <class>com.AsamiOffice.jaba2.xml.processor.XML4J1Processor</class>
+  </entry>
+  <entry>
+    <name>xml4j2</name>
+    <class>com.AsamiOffice.jaba2.xml.processor.XML4J2Processor</class>
+  </entry>
+  <entry>
+    <name>xerces</name>
+    <class>com.AsamiOffice.jaba2.xml.processor.XercesProcessor</class>
+  </entry>
+  <entry>
+    <name>jaxp</name>
+    <class>com.AsamiOffice.jaba2.xml.processor.JAXPProcessor</class>
+  </entry>
+  <entry>
+    <name>projectx</name>
+    <class>com.AsamiOffice.jaba2.xml.processor.ProjectXProcessor</class>
+  </entry>
+</map>

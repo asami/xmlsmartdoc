@@ -1,3 +1,5 @@
+organization := "org.xmlsmartdoc"
+
 name := "SmartDoc"
 
 version := "2.0-SNAPSHOT"

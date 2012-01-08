@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
+         xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+         xmlns:relaxer="http://www.relaxer.org/xmlns/relaxer"
+         xmlns:java="http://www.relaxer.org/xmlns/relaxer/java"
+         xmlns:sql="http://www.relaxer.org/xmlns/relaxer/sql"
+         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
+         ns="">
+  <start>
+    <ref name="jdbc-model"/>
+  </start>
+
+  <define name="jdbc-model">
+    <element name="jdbc-model">
+      <attribute name="database-type">
+        <data type="token"/>
+      </attribute>
+      <element name="quote-id">
+        <data type="token"/>
+      </element>
+      <element name="quote-where">
+        <data type="token"/>
+      </element>
+      <element name="quote-id-in-where">
+        <data type="token"/>
+      </element>
+      <zeroOrMore>
+		    <ref name="xml-datatype"/>
+      </zeroOrMore>
+      <zeroOrMore>
+		    <ref name="java-datatype"/>
+      </zeroOrMore>
+    </element>
+  </define>
+
+  <define name="xml-datatype">
+  	<element name="xml-datatype">
+      <attribute name="name">
+        <data type="token"/>
+      </attribute>
+      <element name="sql">
+        <data type="token"/>
+      </element>
+  	</element>
+  </define>
+
+  <define name="java-datatype">
+  	<element name="java-datatype">
+      <attribute name="name">
+        <data type="token"/>
+      </attribute>
+      <element name="sql">
+        <data type="token"/>
+      </element>
+  	</element>
+  </define>
+
+</grammar>

@@ -1,0 +1,122 @@
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
+         xmlns:java="http://www.relaxer.org/xmlns/relaxer/java"
+         xmlns:sql="http://www.relaxer.org/xmlns/relaxer/sql"
+         ns="http://www.relaxer.org/xmlns/framework/session">
+<!--
+Aug. 22, 2002
+Sep.  9, 2003
+-->
+  <start>
+    <choice>
+      <ref name="session"/>
+      <ref name="subject"/>
+    </choice>
+  </start>
+
+  <define name="session">
+    <element name="session">
+      <attribute name="id">
+        <data type="token"/>
+      </attribute>
+      <optional>
+        <ref name="subject"/>
+      </optional>
+      <zeroOrMore>
+        <ref name="property"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="other"/>
+      </zeroOrMore>
+    </element>
+  </define>
+
+  <define name="subject">
+    <element name="subject">
+      <ref name="principal"/>
+      <zeroOrMore>
+        <ref name="other"/>
+      </zeroOrMore>
+    </element>
+  </define>
+
+  <define name="principal">
+    <element name="principal">
+      <attribute name="name">
+        <data type="token"/>
+      </attribute>
+      <optional>
+        <attribute name="password">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <zeroOrMore>
+        <ref name="other"/>
+      </zeroOrMore>
+    </element>
+  </define>
+
+  <define name="property">
+    <choice>
+      <ref name="value.property"/>
+      <ref name="element.property"/>
+    </choice>
+  </define>
+
+  <define name="value.property">
+    <element name="property">
+      <attribute name="name" java:mapKey="true">
+        <data type="token"/>
+      </attribute>
+      <attribute name="value">
+        <data type="token"/>
+      </attribute>
+    </element>
+  </define>
+
+  <define name="element.property">
+    <element name="property">
+      <attribute name="name" java:mapKey="true">
+        <data type="token"/>
+      </attribute>
+      <oneOrMore>
+        <ref name="other"/>
+      </oneOrMore>
+    </element>
+  </define>
+
+  <define name="other">
+    <zeroOrMore>
+      <element>
+        <anyName>
+          <except>
+            <nsName/>
+          </except>
+        </anyName>
+        <zeroOrMore>
+          <choice>
+            <attribute>
+              <anyName/>
+            </attribute>
+            <text/>
+            <ref name="any"/>
+          </choice>
+        </zeroOrMore>
+      </element>
+    </zeroOrMore>
+  </define>
+  <define name="any">
+    <element>
+      <anyName/>
+      <zeroOrMore>
+        <choice>
+          <attribute>
+            <anyName/>
+          </attribute>
+          <text/>
+          <ref name="any"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+
+</grammar>

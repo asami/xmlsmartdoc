@@ -1,0 +1,52 @@
+<!--
+    article.css
+
+    since   : Sep.  8, 1999
+    version : Sep.  8, 1999
+    author  : ASAMI, Tomoharu (tasami@ibm.net)
+-->
+
+doc {
+  display: block;
+}
+
+head title {
+  display: block;
+  color: maroon;
+  background: gold;
+  text-align: center;
+  border-style: outset;
+  border-color: yellow;
+  padding: 10pt;
+  margin-left: 60pt;
+  margin-right: 60pt;
+}
+
+section title {
+  display: block;
+  color: khaki;
+  background: #666666;
+  padding: 3pt;
+}
+
+subsection title {
+  display: block;
+  color: black;
+  background: #aaaaaa;
+  padding: 2pt;
+  margin-right: 100pt;
+}
+
+subsubsection title {
+  display: block;
+  color: black;
+  background: #eeeeee;
+  padding: 1pt;
+  margin-right: 200pt;
+}
+
+p {
+  display: block;
+  margin: 0pt;
+  text-indent: 1em;
+}

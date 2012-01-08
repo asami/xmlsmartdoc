@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<grammar datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" xmlns="http://relaxng.org/ns/structure/1.0">
+<!--
+May.  8, 2003
+May. 10, 2003
+-->
+  <start>
+    <ref name="scenario"/>
+  </start>
+
+  <define name="scenario">
+    <element name="scenario">
+      <zeroOrMore>
+        <ref name="event"/>
+      </zeroOrMore>
+    </element>
+  </define>
+
+  <define name="event">
+    <choice>
+      <ref name="property"/>
+      <ref name="service"/>
+      <ref name="scene"/>
+      <ref name="system"/>
+    </choice>
+  </define>
+
+  <define name="property">
+    <element name="property">
+      <attribute name="name">
+        <data type="token"/>
+      </attribute>
+      <data type="token"/>
+    </element>
+  </define>
+
+  <define name="service">
+    <element name="service">
+      <attribute name="name">
+        <data type="token"/>
+      </attribute>
+      <zeroOrMore>
+        <ref name="in"/>
+      </zeroOrMore>
+      <ref name="out"/>
+    </element>
+  </define>
+
+  <define name="in">
+    <element name="in">
+      <attribute name="property">
+        <data type="token"/>
+      </attribute>
+    </element>
+  </define>
+
+  <define name="out">
+    <element name="out">
+      <attribute name="property">
+        <data type="token"/>
+      </attribute>
+    </element>
+  </define>
+
+  <define name="scene">
+    <element name="scene">
+      <attribute name="name">
+        <data type="token"/>
+      </attribute>
+      <empty/>
+    </element>
+  </define>
+
+  <define name="system">
+    <element name="system">
+      <attribute name="name">
+        <data type="token"/>
+      </attribute>
+      <empty/>
+    </element>
+  </define>
+</grammar>

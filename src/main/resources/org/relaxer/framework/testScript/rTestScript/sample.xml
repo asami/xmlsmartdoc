@@ -1,0 +1,38 @@
+<testset>
+  <description>
+  </description>
+  <setup>
+  </setup>
+  <testcase id="1">
+    <description>
+    </description>
+    <setup>
+    </setup>
+    <test>
+      <invoke class="Target" method="sum">
+        <in>1</in>
+        <in>2</in>
+        <in>3</in>
+        <in>4</in>
+        <in>5</in>
+        <out>10</out>
+      </invoke>
+    </test>
+    <teardown>
+    </teardown>
+  </testcase>
+  <testcase id="2">
+    <test>
+      <invoke class="Target" method="sum">
+        <in>1</in>
+        <in>2</in>
+        <in>3</in>
+        <in>4</in>
+        <in>5</in>
+        <out>15</out>
+      </invoke>
+    </test>
+  </testcase>
+  <teardown>
+  </teardown>
+</testset>

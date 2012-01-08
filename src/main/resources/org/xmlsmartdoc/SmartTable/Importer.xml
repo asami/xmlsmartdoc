@@ -1,0 +1,23 @@
+<?xml version='1.0'?>
+<!--
+    Importer.xml
+
+    since   : Aug.  3, 1999
+    version : Oct. 22, 2003
+    author  : ASAMI, Tomoharu (asami@XMLSmartDoc.org)
+-->
+
+<map>
+  <entry>
+    <name>xml</name>
+    <class>org.xmlsmartdoc.SmartTable.XMLImporter</class>
+  </entry>
+  <entry>
+    <name>csv</name>
+    <class>org.xmlsmartdoc.SmartTable.CSVImporter</class>
+  </entry>
+  <entry>
+    <name>jdbc</name>
+    <class>org.xmlsmartdoc.SmartTable.JDBCImporter</class>
+  </entry>
+</map>

@@ -1,0 +1,1020 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
+         xmlns:java="http://www.relaxer.org/xmlns/relaxer/java"
+         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
+         ns="http://www.relaxer.org/xmlns/framework">
+<!--
+May.  5, 2003
+Sep.  7, 2004
+-->
+  <start>
+    <choice>
+      <ref name="config"/>
+      <ref name="plain-script"/>
+      <ref name="plain-script-body"/>
+    </choice>
+  </start>
+
+  <define name="config">
+    <element name="config">
+      <ref name="application-config"/>
+      <ref name="component-config"/>
+      <ref name="framework-config"/>
+    </element>
+  </define>
+
+  <!-- application config -->
+  <define name="application-config">
+    <zeroOrMore>
+      <ref name="copyright"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="version"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="usage"/>
+    </zeroOrMore>
+    <ref name="plain-script-head.model"/>
+    <optional>
+      <ref name="dialog"/>
+    </optional>
+    <zeroOrMore>
+      <ref name="service"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="options"/>
+    </zeroOrMore>
+  </define>
+
+  <define name="copyright">
+    <element name="copyright">
+      <ref name="locale.attr"/>
+      <text/>
+    </element>
+  </define>
+
+  <define name="version">
+    <element name="version">
+      <ref name="locale.attr"/>
+      <optional>
+        <attribute name="number">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="build">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="prologue">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="epilogue">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <text/>
+    </element>
+  </define>
+
+  <define name="usage">
+    <element name="usage">
+      <ref name="locale.attr"/>
+      <text/>
+    </element>
+  </define>
+
+  <define name="locale.attr">
+    <optional>
+      <attribute name="locale">
+        <data type="language"/>
+      </attribute>
+    </optional>
+  </define>
+
+  <define name="service">
+    <choice>
+      <ref name="component-service"/>
+      <ref name="system-service"/>
+      <ref name="script-service"/>
+    </choice>
+  </define>
+
+  <define name="component-service">
+    <element name="service">
+      <attribute name="name">
+        <data type="token"/>
+      </attribute>
+      <optional>
+        <attribute name="role">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <attribute name="component">
+        <data type="token"/>
+      </attribute>
+      <attribute name="operation">
+        <data type="token"/>
+      </attribute>
+      <ref name="helps"/>
+    </element>
+  </define>
+  
+  <define name="system-service">
+    <element name="service">
+      <attribute name="name">
+        <data type="token"/>
+      </attribute>
+      <optional>
+        <attribute name="role">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <attribute name="system">
+        <data type="token"/>
+      </attribute>
+      <ref name="helps"/>
+    </element>
+  </define>
+
+  <define name="script-service">
+    <element name="service">
+      <attribute name="name">
+        <data type="token"/>
+      </attribute>
+      <optional>
+        <attribute name="role">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <attribute name="debug">
+        <data type="token"/>
+      </attribute>
+      <ref name="helps"/>
+      <ref name="plain-script.model"/>
+    </element>
+  </define>
+
+  <define name="plain-script">
+    <element name="plain-script">
+      <ref name="plain-script.model"/>
+    </element>
+  </define>
+
+  <define name="plain-script.model">
+    <ref name="plain-script-head.model"/>
+    <ref name="plain-script-body.model"/>
+  </define>
+
+  <define name="plain-script-head.model">
+    <zeroOrMore>
+      <ref name="slot"/>
+    </zeroOrMore>
+    <optional>
+      <ref name="prologue"/>
+    </optional>
+    <optional>
+      <ref name="epilogue"/>
+    </optional>
+  </define>
+
+  <define name="slot">
+    <element name="slot">
+      <attribute name="name" java:mapKey="true">
+        <data type="token"/>
+      </attribute>
+      <choice>
+        <attribute name="value">
+          <text/>
+        </attribute>
+        <text/>
+      </choice>
+<!--
+      <optional>
+        <attribute name="access">
+          <choice>
+            <value>read-only</value>
+            <value>write-only</value>
+            <value>read-write</value>
+          </choice>
+        </attribute>
+      </optional>
+-->
+    </element>
+  </define>
+
+  <define name="prologue">
+    <element name="prologue">
+      <ref name="plain-script-body.model"/>
+    </element>
+  </define>
+
+  <define name="epilogue">
+    <element name="epilogue">
+      <ref name="plain-script-body.model"/>
+    </element>
+  </define>
+
+  <define name="plain-script-body">
+    <element name="plain-script-body">
+      <ref name="plain-script-body.model"/>
+    </element>
+  </define>
+
+  <define name="plain-script-body.model">
+    <zeroOrMore>
+      <ref name="plain-script-body.content"/>
+    </zeroOrMore>
+  </define>
+
+  <define name="plain-script-body.content">
+    <choice>
+      <ref name="service-action"/>
+      <ref name="component-action"/>
+      <ref name="model-action"/>
+      <ref name="resource-action"/>
+      <ref name="system-action"/>
+    </choice>
+  </define>
+
+  <define name="service-action">
+    <element name="service">
+      <attribute name="ref">
+        <data type="token"/>
+      </attribute>
+      <zeroOrMore>
+        <ref name="action-in"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="action-out"/>
+      </zeroOrMore>
+    </element>
+  </define>
+
+  <define name="component-action">
+    <element name="component">
+      <attribute name="ref">
+        <data type="token"/>
+      </attribute>
+      <attribute name="operation">
+        <data type="token"/>
+      </attribute>
+      <zeroOrMore>
+        <ref name="action-in"/>
+      </zeroOrMore>
+      <optional>
+        <ref name="action-out"/>
+      </optional>
+    </element>
+  </define>
+
+  <define name="model-action">
+    <element name="model">
+      <attribute name="ref">
+        <data type="token"/>
+      </attribute>
+      <attribute name="event">
+        <data type="token"/>
+      </attribute>
+      <zeroOrMore>
+        <ref name="action-in"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="action-out"/>
+      </zeroOrMore>
+    </element>
+  </define>
+
+  <define name="resource-action">
+    <element name="resource">
+      <attribute name="ref">
+        <data type="token"/>
+      </attribute>
+      <zeroOrMore>
+        <ref name="action-in"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="action-out"/>
+      </zeroOrMore>
+    </element>
+  </define>
+
+  <define name="system-action">
+    <element name="system">
+      <attribute name="ref">
+        <data type="token"/>
+      </attribute>
+      <zeroOrMore>
+        <ref name="action-in"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="action-out"/>
+      </zeroOrMore>
+    </element>
+  </define>
+
+  <define name="action-in">
+    <element name="in">
+      <optional>
+        <attribute name="name">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <optional>
+        <choice>
+          <attribute name="peek">
+            <data type="token"/>
+          </attribute>
+          <attribute name="pop">
+            <data type="token"/>
+          </attribute>
+          <attribute name="value">
+            <data type="token"/>
+          </attribute>
+          <text/>
+        </choice>
+      </optional>
+    </element>
+  </define>
+
+  <define name="action-out">
+    <element name="out">
+      <optional>
+        <attribute name="name">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <optional>
+        <choice>
+          <attribute name="poke">
+            <data type="token"/>
+          </attribute>
+          <attribute name="push">
+            <data type="token"/>
+          </attribute>
+        </choice>
+      </optional>
+    </element>
+  </define>
+
+  <define name="options">
+    <choice>
+      <ref name="option"/>
+      <ref name="optionSet"/>
+    </choice>
+  </define>
+  
+  <define name="option">
+    <choice>
+      <ref name="component-option"/>
+      <ref name="system-option"/>
+    </choice>
+  </define>
+
+  <define name="optionSet">
+    <element name="optionSet">
+      <attribute name="name" java:mapKey="true">
+        <data type="token"/>
+      </attribute>
+      <zeroOrMore>
+        <choice>
+          <ref name="option"/>
+          <ref name="option.ref"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+
+  <define name="component-option">
+    <element name="option">
+      <attribute name="name" java:mapKey="true">
+        <data type="token"/>
+      </attribute>
+      <attribute name="component">
+        <data type="token"/>
+      </attribute>
+      <attribute name="attribute">
+        <data type="token"/>
+      </attribute>
+      <ref name="helps"/>
+    </element>
+  </define>
+
+  <define name="system-option">
+    <element name="option">
+      <attribute name="name" java:mapKey="true">
+        <data type="token"/>
+      </attribute>
+      <attribute name="system">
+        <data type="token"/>
+      </attribute>
+      <ref name="helps"/>
+    </element>
+  </define>
+
+  <define name="option.ref">
+    <element name="option">
+      <attribute name="ref">
+        <data type="token"/>
+      </attribute>
+    </element>
+  </define>
+
+  <define name="helps">
+    <zeroOrMore>
+      <ref name="help"/>
+    </zeroOrMore>
+  </define>
+
+  <define name="help">
+    <element name="help">
+      <ref name="locale.attr"/>
+      <optional>
+        <attribute name="type">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <text/>
+    </element>
+  </define>
+
+  <!-- component config -->
+  <define name="component-config">
+    <zeroOrMore>
+      <ref name="component"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="model"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="resource"/>
+    </zeroOrMore>
+  </define>
+
+  <!-- dialog -->
+  <define name="dialog">
+    <element name="dialog">
+      <ref name="plain-script-head.model"/>
+      <zeroOrMore>
+        <ref name="scene"/>
+      </zeroOrMore>
+    </element>
+  </define>
+
+  <define name="scene">
+    <element name="scene">
+      <optional>
+        <attribute name="name">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <ref name="plain-script-head.model"/>
+      <zeroOrMore>
+        <ref name="scenario"/>
+      </zeroOrMore>
+    </element>
+  </define>
+
+  <define name="scenario">
+    <element name="scenario">
+      <optional>
+        <attribute name="name">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <ref name="plain-script-head.model"/>
+      <ref name="scenario-script.model"/>
+    </element>
+  </define>
+
+  <define name="scenario-script.model">
+    <zeroOrMore>
+      <ref name="scenario-script.content"/>
+    </zeroOrMore>
+  </define>
+
+  <define name="scenario-script.content">
+    <choice>
+      <ref name="plain-script-body.content"/>
+      <ref name="scenario-action"/>
+      <ref name="move-scene-action"/>
+    </choice>
+  </define>
+
+  <define name="scenario-action">
+    <element name="scenario">
+      <attribute name="ref">
+        <data type="token"/>
+      </attribute>
+      <zeroOrMore>
+        <ref name="action-in"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="action-out"/>
+      </zeroOrMore>
+    </element>
+  </define>
+
+  <define name="move-scene-action">
+    <element name="move-scene">
+      <attribute name="ref">
+        <data type="token"/>
+      </attribute>
+      <zeroOrMore>
+        <ref name="action-in"/>
+      </zeroOrMore>
+    </element>
+  </define>
+
+  <!-- component -->
+  <define name="component">
+    <element name="component">
+      <attribute name="name" java:mapKey="true">
+        <data type="token"/>
+      </attribute>
+      <attribute name="java.class">
+        <data type="token"/>
+      </attribute>
+      <optional>
+        <attribute name="java.type">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="jndi.name">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <zeroOrMore>
+        <ref name="attribute"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="operation"/>
+      </zeroOrMore>
+      <optional>
+        <ref name="extension"/>
+      </optional>
+      <optional>
+        <ref name="realization"/>
+      </optional>
+    </element>
+  </define>
+
+  <define name="attribute">
+    <element name="attribute">
+      <attribute name="name" java:mapKey="true">
+        <data type="token"/>
+      </attribute>
+      <attribute name="java.type">
+        <data type="token"/>
+      </attribute>
+    </element>
+  </define>
+
+  <define name="operation">
+    <element name="operation">
+      <attribute name="name" java:mapKey="true">
+        <data type="token"/>
+      </attribute>
+      <zeroOrMore>
+        <ref name="operation-in"/>
+      </zeroOrMore>
+      <optional>
+        <ref name="operation-out"/>
+      </optional>
+    </element>
+  </define>
+
+  <define name="operation-in">
+    <element name="in">
+      <attribute name="java.type">
+        <data type="token"/>
+      </attribute>
+      <optional>
+        <attribute name="name">
+          <data type="token"/>
+        </attribute>
+      </optional>
+    </element>
+  </define>
+
+  <define name="operation-out">
+    <element name="out">
+      <attribute name="java.type">
+        <data type="token"/>
+      </attribute>
+      <optional>
+        <attribute name="name">
+          <data type="token"/>
+        </attribute>
+      </optional>
+    </element>
+  </define>
+
+  <define name="extension">
+    <element name="extension">
+      <zeroOrMore>
+        <ref name="provider"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="variable"/>
+      </zeroOrMore>
+    </element>
+  </define>
+
+  <define name="provider">
+    <element name="provider">
+      <attribute name="name">
+        <data type="token"/>
+      </attribute>
+      <attribute name="java.class">
+        <data type="token"/>
+      </attribute>
+    </element>
+  </define>
+
+  <define name="variable">
+    <element name="variable">
+      <attribute name="name">
+        <data type="token"/>
+      </attribute>
+      <attribute name="java.type">
+        <data type="token"/>
+      </attribute>
+      <optional>
+        <attribute name="value">
+          <data type="token"/>
+        </attribute>
+      </optional>
+    </element>
+  </define>
+
+  <define name="realization">
+    <element name="realization">
+      <zeroOrMore>
+        <ref name="property"/>
+      </zeroOrMore>
+      <optional>
+        <ref name="constructor"/>
+      </optional>
+      <zeroOrMore>
+        <ref name="method"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="componentRef"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="modelRef"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="resourceRef"/>
+      </zeroOrMore>
+    </element>
+  </define>
+
+  <define name="componentRef">
+    <choice>
+      <ref name="configComponentRef"/>
+      <ref name="jndiComponentRef"/>
+      <ref name="javaBeansComponentRef"/>
+    </choice>
+  </define>
+
+  <define name="configComponentRef">
+    <element name="component">
+      <attribute name="role">
+        <data type="token"/>
+      </attribute>
+      <attribute name="ref">
+        <data type="token"/>
+      </attribute>
+    </element>
+  </define>
+
+  <define name="jndiComponentRef">
+    <element name="component">
+      <attribute name="role">
+        <data type="token"/>
+      </attribute>
+      <attribute name="jndi.name">
+        <data type="token"/>
+      </attribute>
+      <attribute name="java.type">
+        <data type="token"/>
+      </attribute>
+    </element>
+  </define>
+
+  <define name="javaBeansComponentRef">
+    <element name="component">
+      <attribute name="role">
+        <data type="token"/>
+      </attribute>
+      <attribute name="java.beans">
+        <data type="token"/>
+      </attribute>
+    </element>
+  </define>
+
+  <define name="modelRef">
+    <choice>
+      <ref name="configModelRef"/>
+      <ref name="jndiModelRef"/>
+      <ref name="javaBeansModelRef"/>
+    </choice>
+  </define>
+
+  <define name="configModelRef">
+    <element name="model">
+      <attribute name="role">
+        <data type="token"/>
+      </attribute>
+      <attribute name="ref">
+        <data type="token"/>
+      </attribute>
+    </element>
+  </define>
+
+  <define name="jndiModelRef">
+    <element name="model">
+      <attribute name="role">
+        <data type="token"/>
+      </attribute>
+      <attribute name="jndi.name">
+        <data type="token"/>
+      </attribute>
+      <attribute name="java.type">
+        <data type="token"/>
+      </attribute>
+    </element>
+  </define>
+
+  <define name="javaBeansModelRef">
+    <element name="model">
+      <attribute name="role">
+        <data type="token"/>
+      </attribute>
+      <attribute name="java.beans">
+        <data type="token"/>
+      </attribute>
+    </element>
+  </define>
+
+  <define name="resourceRef">
+    <choice>
+      <ref name="configResourceRef"/>
+      <ref name="jndiResourceRef"/>
+    </choice>
+  </define>
+
+  <define name="configResourceRef">
+    <element name="resource">
+      <attribute name="role">
+        <data type="token"/>
+      </attribute>
+      <attribute name="ref">
+        <data type="token"/>
+      </attribute>
+    </element>
+  </define>
+
+  <define name="jndiResourceRef">
+    <element name="resource">
+      <attribute name="role">
+        <data type="token"/>
+      </attribute>
+      <ref name="jndi.model"/>
+    </element>
+  </define>
+
+  <!-- model -->
+  <define name="model">
+    <element name="model">
+      <attribute name="name" java:mapKey="true">
+        <data type="token"/>
+      </attribute>
+      <choice>
+        <attribute name="type">
+          <data type="token"/>
+        </attribute>
+        <attribute name="java.class">
+          <data type="token"/>
+        </attribute>
+      </choice>
+      <zeroOrMore>
+        <ref name="slot"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <element name="mapper">
+          <attribute name="java.class">
+            <data type="token"/>
+          </attribute>
+        </element>
+      </zeroOrMore>
+      <optional>
+        <element name="repository">
+          <attribute name="java.class">
+            <data type="token"/>
+          </attribute>
+        </element>
+      </optional>
+    </element>
+  </define>
+
+  <!-- resource -->
+  <define name="resource">
+    <element name="resource">
+      <attribute name="name" java:mapKey="true">
+        <data type="token"/>
+      </attribute>
+      <choice>
+        <ref name="jdbc-resource"/>
+        <ref name="jndi-resource"/>
+        <ref name="datasource-resource"/>
+        <ref name="file-resource"/>
+        <ref name="url-resource"/>
+        <ref name="variable-resource"/>
+      </choice>
+    </element>
+  </define>
+
+  <define name="jdbc-resource">
+    <element name="jdbc">
+      <ref name="jdbc.model"/>
+    </element>
+  </define>
+
+  <define name="jndi-resource">
+    <element name="jndi">
+      <ref name="jndi.model"/>
+    </element>
+  </define>
+
+  <define name="datasource-resource">
+    <element name="datasource">
+      <ref name="jdbc.model"/>
+    </element>
+  </define>
+
+  <define name="file-resource">
+    <element name="file">
+      <attribute name="name">
+        <data type="token"/>
+      </attribute>
+    </element>
+  </define>
+
+  <define name="url-resource">
+    <element name="url">
+      <attribute name="name">
+        <data type="token"/>
+      </attribute>
+    </element>
+  </define>
+
+  <define name="variable-resource">
+    <element name="variable">
+      <attribute name="java.class">
+        <data type="token"/>
+      </attribute>
+      <text/>
+    </element>
+  </define>
+
+  <!-- content model -->
+  <define name="jdbc.model">
+    <element name="url">
+      <data type="token"/>
+    </element>
+    <optional>
+      <element name="userName">
+        <data type="token"/>
+      </element>
+    </optional>
+    <optional>
+      <element name="password">
+        <data type="token"/>
+      </element>
+    </optional>
+    <optional>
+      <element name="driver">
+        <data type="token"/>
+      </element>
+    </optional>
+    <optional>
+      <element name="classpath">
+        <data type="token"/>
+      </element>
+    </optional>
+  </define>
+
+  <define name="jndi.model">
+    <attribute name="jndi.name">
+      <data type="token"/>
+    </attribute>
+    <attribute name="java.type">
+      <data type="token"/>
+    </attribute>
+  </define>
+
+  <!-- framework -->
+  <define name="framework-config">
+    <optional>
+      <ref name="framework-log"/>
+    </optional>
+  </define>
+
+  <define name="framework-log">
+    <element name="log">
+      <attribute name="level">
+        <ref name="log-level"/>
+      </attribute>
+      <zeroOrMore>
+        <ref name="logger"/>
+      </zeroOrMore>
+    </element>
+  </define>
+
+  <define name="logger">
+    <element name="logger">
+      <attribute name="name">
+	<data type="token"/>
+      </attribute>
+      <optional>
+        <attribute name="level">
+          <ref name="log-level"/>
+        </attribute>
+      </optional>
+      <zeroOrMore>
+        <ref name="property"/>
+      </zeroOrMore>
+    </element>
+  </define>
+
+  <define name="log-level">
+    <choice>
+      <value>none</value>
+      <value>fatal</value>
+      <value>error</value>
+      <value>warning</value>
+      <value>info</value>
+      <value>config</value>
+      <value>trace</value>
+      <value>debug</value>
+    </choice>
+  </define>
+
+  <define name="property">
+    <element name="property">
+      <attribute name="name">
+        <data type="token"/>
+      </attribute>
+      <optional>
+        <attribute name="value">
+          <text/>
+        </attribute>
+      </optional>
+      <text/> <!-- improve -->
+    </element>
+  </define>
+  
+  <define name="constructor">
+    <element name="constructor">
+      <ref name="parameters"/>
+    </element>
+  </define>
+
+  <define name="method">
+    <element name="constructor">
+      <attribute name="name">
+        <data type="token"/>
+      </attribute>
+      <ref name="parameters"/>
+    </element>
+  </define>
+
+  <define name="parameters">
+    <choice>
+      <attribute name="values">
+        <list>
+          <zeroOrMore>
+            <data type="token"/>
+          </zeroOrMore>
+        </list>
+      </attribute>
+      <zeroOrMore>
+        <ref name="value"/>
+      </zeroOrMore>
+    </choice>
+  </define>
+
+  <define name="value">
+    <element name="value">
+      <text/>
+    </element>
+  </define>
+
+</grammar>

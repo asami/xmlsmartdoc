@@ -1,0 +1,19 @@
+<?xml version='1.0'?>
+<!--
+    Converter.xml
+
+    since   : Aug.  6, 1999
+    version : Nov. 16, 2003
+    author  : ASAMI, Tomoharu (asami@AsamiOffice)
+-->
+
+<map>
+  <entry>
+    <name>text</name>
+    <class>com.AsamiOffice.jaba2.xml.converter.TextConverter</class>
+  </entry>
+  <entry>
+    <name>href</name>
+    <class>com.AsamiOffice.jaba2.xml.converter.HRefConverter</class>
+  </entry>
+</map>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module moduleVersion="1.0" relaxCoreVersion="1.0" targetNamespace="" xmlns="http://www.xml.gr.jp/xmlns/relaxCore">
+    <interface>
+        <export label="hilightData"/>
+    </interface>
+    <elementRule label="hilightData">
+        <tag/>
+        <ref label="syntax" occurs="*"/>
+    </elementRule>
+    <elementRule label="syntax">
+        <tag>
+            <attribute name="name" required="true" type="string"/>
+        </tag>
+        <ref label="word" occurs="*"/>
+    </elementRule>
+    <elementRule label="word">
+        <tag>
+            <attribute name="tagClass" required="true" type="string"/>
+            <attribute name="cssClass" required="true" type="string"/>
+            <attribute name="regex" type="boolean"/>
+        </tag>
+        <element name="expression" occurs="*" type="string"/>
+    </elementRule>
+</module>
+

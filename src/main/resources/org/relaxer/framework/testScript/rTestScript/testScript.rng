@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
+         xmlns:relaxer="http://www.relaxer.org/xmlns/relaxer"
+         xmlns:java="http://www.relaxer.org/xmlns/relaxer/java"
+         xmlns:jdbc="http://www.relaxer.org/xmlns/relaxer/jdbc"
+         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+<!--
+Aug. 20, 2003
+Sep. 29, 2003
+-->
+  <start>
+    <ref name="testcase"/>
+  </start>
+  <define name="testcase">
+    <element name="testcase">
+      <optional>
+        <element name="description">
+          <empty/>
+        </element>
+      </optional>
+      <optional>
+        <element name="setup">
+          <empty/>
+        </element>
+      </optional>
+      <zeroOrMore>
+        <ref name="test"/>
+      </zeroOrMore>
+      <optional>
+        <element name="teardown">
+         <empty/>
+        </element>
+      </optional>
+    </element>
+  </define>
+  <define name="test">
+    <element name="test">
+      <optional>
+        <attribute name="id">
+          <data type="int"/>
+        </attribute>
+      </optional>
+      <optional>
+        <element name="description">
+          <empty/>
+        </element>
+      </optional>
+      <optional>
+        <element name="setup">
+          <empty/>
+        </element>
+      </optional>
+      <ref name="body"/>
+      <optional>
+        <element name="teardown">
+          <empty/>
+        </element>
+      </optional>
+    </element>
+  </define>
+  <define name="body">
+    <element name="body">
+      <zeroOrMore>
+        <ref name="expression"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="expression">
+    <choice>
+      <text/>
+      <ref name="invoke-object"/>
+      <ref name="invoke-service"/>
+      <ref name="assert"/>
+      <ref name="assert-return"/>
+      <ref name="assert-exception"/>
+    </choice>
+  </define>
+  <define name="invoke-object">
+    <element name="invoke">
+      <attribute name="class">
+        <data type="token"/>
+      </attribute>
+      <attribute name="method">
+        <data type="token"/>
+      </attribute>
+      <zeroOrMore>
+        <ref name="in"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="invoke-service">
+    <element name="invoke">
+      <attribute name="service">
+        <data type="token"/>
+      </attribute>
+      <zeroOrMore>
+        <ref name="in"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="in">
+      <element name="in">
+        <ref name="valueExpression"/>
+      </element>
+  </define>
+  <define name="assert">
+    <element name="assert">
+      <attribute name="slot">
+        <data type="token"/>
+      </attribute>
+    </element>
+  </define>
+  <define name="assert-return">
+    <element name="assert-return">
+      <ref name="valueExpression"/>
+    </element>
+  </define>
+  <define name="assert-exception">
+    <element name="assert-exception">
+      <empty/>
+    </element>
+  </define>
+  <define name="valueExpression">
+    <choice>
+      <attribute name="value">
+        <data type="token"/>
+      </attribute>
+      <ref name="valueElement"/>
+      <ref name="expression"/>
+    </choice>
+  </define>
+  <define name="valueElement">
+    <element name="value">
+      <zeroOrMore>
+        <choice>
+          <attribute>
+            <anyName/>
+          </attribute>
+          <text/>
+          <ref name="any"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="any">
+    <element>
+      <anyName/>
+      <zeroOrMore>
+        <choice>
+          <attribute>
+            <anyName/>
+          </attribute>
+          <text/>
+          <ref name="any"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+
+</grammar>
