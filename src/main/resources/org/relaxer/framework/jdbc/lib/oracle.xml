@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jdbc-model datatype-type="sql92">
+  <quote-id>&quot;</quote-id>
+  <quote-where/>
+  <quote-id-in-where/>
+  <xml-datatype name="string">
+    <sql>VARCHAR2(128)</sql>
+  </xml-datatype>
+  <xml-datatype name="normalizedString">
+    <sql>VARCHAR2(64)</sql>
+  </xml-datatype>
+  <xml-datatype name="token">
+    <sql>VARCHAR2(32)</sql>
+  </xml-datatype>
+  <xml-datatype name="boolean">
+    <sql>NUMBER</sql>
+  </xml-datatype>
+  <xml-datatype name="byte">
+    <sql>NUMBER</sql>
+  </xml-datatype>
+  <xml-datatype name="short">
+    <sql>NUMBER</sql>
+  </xml-datatype>
+  <xml-datatype name="int">
+    <sql>NUMBER</sql>
+  </xml-datatype>
+  <xml-datatype name="long">
+    <sql>NUMBER</sql>
+  </xml-datatype>
+  <xml-datatype name="unsignedByte">
+    <sql>NUMBER</sql>
+  </xml-datatype>
+  <xml-datatype name="unsignedShort">
+    <sql>NUMBER</sql>
+  </xml-datatype>
+  <xml-datatype name="unsignedInt">
+    <sql>NUMBER</sql>
+  </xml-datatype>
+  <xml-datatype name="unsignedLong">
+    <sql>NUMBER</sql>
+  </xml-datatype>
+  <xml-datatype name="float">
+    <sql>NUMBER</sql>
+  </xml-datatype>
+  <xml-datatype name="double">
+    <sql>NUMBER</sql>
+  </xml-datatype>
+  <xml-datatype name="decimal">
+    <sql>NUMBER</sql>
+  </xml-datatype>
+  <xml-datatype name="base64Binary">
+    <sql>RAW</sql>
+  </xml-datatype>
+  <xml-datatype name="hexBinary">
+    <sql>RAW</sql>
+  </xml-datatype>
+  <xml-datatype name="anyURI">
+    <sql>VARCHAR2(64)</sql>
+  </xml-datatype>
+  <xml-datatype name="language">
+    <sql>VARCHAR2(8)</sql>
+  </xml-datatype>
+  <xml-datatype name="Name">
+    <sql>VARCHAR2(32)</sql>
+  </xml-datatype>
+  <xml-datatype name="QName">
+    <sql>VARCHAR2(32)</sql>
+  </xml-datatype>
+  <xml-datatype name="NCName">
+    <sql>VARCHAR2(32)</sql>
+  </xml-datatype>
+  <xml-datatype name="integer">
+    <sql>NUMBER</sql>
+  </xml-datatype>
+  <xml-datatype name="nonNegativeInteger">
+    <sql>NUMBER</sql>
+  </xml-datatype>
+  <xml-datatype name="positiveInteger">
+    <sql>NUMBER</sql>
+  </xml-datatype>
+  <xml-datatype name="nonPositiveInteger">
+    <sql>NUMBER</sql>
+  </xml-datatype>
+  <xml-datatype name="negativeInteger">
+    <sql>NUMBER</sql>
+  </xml-datatype>
+  <xml-datatype name="time">
+    <sql>TIME</sql>
+  </xml-datatype>
+  <xml-datatype name="date">
+    <sql>DATE</sql>
+  </xml-datatype>
+  <xml-datatype name="dateTime">
+    <sql>TIMESTAMP</sql>
+  </xml-datatype>
+  <xml-datatype name="gYearMonth">
+    <sql>CHAR(7)</sql>
+  </xml-datatype>
+  <xml-datatype name="gYear">
+    <sql>CHAR(4)</sql>
+  </xml-datatype>
+  <xml-datatype name="gMonthDay">
+    <sql>CHAR(5)</sql>
+  </xml-datatype>
+  <xml-datatype name="gDay">
+    <sql>CHAR(2)</sql>
+  </xml-datatype>
+  <xml-datatype name="gMonth">
+    <sql>CHAR(2)</sql>
+  </xml-datatype>
+  <xml-datatype name="duration">
+    <sql>VARCHAR2(2)</sql>
+  </xml-datatype>
+  <xml-datatype name="CDATA">
+    <sql>VARCHAR2(32)</sql>
+  </xml-datatype>
+  <xml-datatype name="NMTOKEN">
+    <sql>VARCHAR2(32)</sql>
+  </xml-datatype>
+  <xml-datatype name="NMTOKENS">
+    <sql>VARCHAR2(32)</sql>
+  </xml-datatype>
+  <xml-datatype name="ID">
+    <sql>VARCHAR2(32)</sql>
+  </xml-datatype>
+  <xml-datatype name="IDREF">
+    <sql>VARCHAR2(32)</sql>
+  </xml-datatype>
+  <xml-datatype name="IDREFS">
+    <sql>VARCHAR2(32)</sql>
+  </xml-datatype>
+  <xml-datatype name="ENTITY">
+    <sql>VARCHAR2(32)</sql>
+  </xml-datatype>
+  <xml-datatype name="ENTITIES">
+    <sql>VARCHAR2(32)</sql>
+  </xml-datatype>
+  <xml-datatype name="NOTATION">
+    <sql>VARCHAR2(32)</sql>
+  </xml-datatype>
+  <xml-datatype name="hedge">
+    <sql>LONG</sql>
+  </xml-datatype>
+</jdbc-model>

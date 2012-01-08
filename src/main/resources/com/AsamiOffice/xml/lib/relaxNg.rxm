@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<module 
+  relaxCoreVersion="1.0"
+  targetNamespace="http://relaxng.org/ns/structure/1.0"
+  xmlns="http://www.xml.gr.jp/xmlns/relaxCore">
+
+<!--
+May. 27, 2001
+Dec. 17, 2002
+-->
+
+  <interface>
+    <export label="grammar"/>
+    <export label="element"/>
+    <export label="externalRef"/>
+  </interface>
+
+  <simpleType name="ngToken">
+    <restriction base="token"/>
+  </simpleType>
+
+  <simpleType name="ngURI">
+    <restriction base="anyURI"/>
+  </simpleType>
+
+  <elementRule label="grammar">
+    <tag name="grammar">
+      <attribute name="ns" type="ngURI"/>
+      <attribute name="datatypeLibrary" type="ngURI"/>
+    </tag>
+    <sequence>
+      <hedgeRef label="grammarContent" occurs="*"/>
+    </sequence>
+  </elementRule>
+
+  <hedgeRule label="grammarContent">
+    <choice>
+      <ref label="start"/>
+      <ref label="define"/>
+      <ref label="div"/>
+      <ref label="include"/>
+    </choice>
+  </hedgeRule>
+
+  <elementRule label="div">
+    <tag name="div">
+      <attribute name="datatypeLibrary" type="ngURI"/>
+    </tag>
+    <sequence>
+      <hedgeRef label="grammarContent" occurs="*"/>
+    </sequence>
+  </elementRule>
+
+  <elementRule label="externalRef">
+    <tag name="externalRef">
+      <attribute name="xml:base" type="ngToken"/>
+      <attribute name="href" type="ngToken"/>
+      <attribute name="datatypeLibrary" type="ngURI"/>
+    </tag>
+    <empty/>
+  </elementRule>
+
+  <elementRule label="include">
+    <tag name="include">
+      <attribute name="href" type="ngToken"/>
+      <attribute name="datatypeLibrary" type="ngURI"/>
+    </tag>
+    <sequence>
+      <hedgeRef label="includeContent" occurs="*"/>
+    </sequence>
+  </elementRule>
+
+  <hedgeRule label="includeContent">
+    <choice>
+      <ref label="start"/>
+      <ref label="define"/>
+      <ref label="div"/>
+    </choice>
+  </hedgeRule>
+
+  <elementRule label="start">
+    <tag name="start">
+      <attribute name="ns" type="ngURI"/>
+      <attribute name="datatypeLibrary" type="ngURI"/>
+    </tag>
+    <sequence>
+      <hedgeRef label="elementHedge" occurs="*"/>
+    </sequence>
+  </elementRule>
+
+  <elementRule label="element">
+    <tag name="element">
+      <attribute name="name" type="ngToken"/>
+      <attribute name="ns" type="ngURI"/>
+      <attribute name="datatypeLibrary" type="ngURI"/>
+    </tag>
+    <sequence>
+      <hedgeRef label="nameClassHedge" occurs="?"/>
+      <hedgeRef label="elementHedge" occurs="*"/>
+    </sequence>
+  </elementRule>
+
+  <elementRule label="attribute">
+    <tag name="attribute">
+      <attribute name="name" type="ngToken"/>
+      <attribute name="ns" type="ngURI"/>
+      <attribute name="datatypeLibrary" type="ngURI"/>
+    </tag>
+    <sequence>
+      <hedgeRef label="nameClassHedge" occurs="?"/>
+      <hedgeRef label="textHedge" occurs="?"/>
+    </sequence>
+  </elementRule>
+
+  <elementRule label="choice">
+    <tag name="choice">
+      <attribute name="datatypeLibrary" type="ngURI"/>
+    </tag>
+    <sequence>
+      <hedgeRef label="elementHedge" occurs="+"/>
+    </sequence>
+  </elementRule>
+
+  <elementRule label="interleave">
+    <tag name="interleave">
+      <attribute name="datatypeLibrary" type="ngURI"/>
+    </tag>
+    <sequence>
+      <hedgeRef label="elementHedge" occurs="+"/>
+    </sequence>
+  </elementRule>
+
+  <elementRule label="mixed">
+    <tag name="mixed">
+      <attribute name="datatypeLibrary" type="ngURI"/>
+    </tag>
+    <sequence>
+      <hedgeRef label="elementHedge" occurs="+"/>
+    </sequence>
+  </elementRule>
+
+  <elementRule label="optional">
+    <tag name="optional">
+      <attribute name="datatypeLibrary" type="ngURI"/>
+    </tag>
+    <sequence>
+      <hedgeRef label="elementHedge" occurs="+"/>
+    </sequence>
+  </elementRule>
+
+  <elementRule label="group">
+    <tag name="group">
+      <attribute name="datatypeLibrary" type="ngURI"/>
+    </tag>
+    <sequence>
+      <hedgeRef label="elementHedge" occurs="+"/>
+    </sequence>
+  </elementRule>
+
+  <elementRule label="zeroOrMore">
+    <tag name="zeroOrMore">
+      <attribute name="datatypeLibrary" type="ngURI"/>
+    </tag>
+    <sequence>
+      <hedgeRef label="elementHedge" occurs="+"/>
+    </sequence>
+  </elementRule>
+
+  <elementRule label="oneOrMore">
+    <tag name="oneOrMore">
+      <attribute name="datatypeLibrary" type="ngURI"/>
+    </tag>
+    <sequence>
+      <hedgeRef label="elementHedge" occurs="+"/>
+    </sequence>
+  </elementRule>
+
+  <elementRule label="empty">
+    <tag name="empty">
+      <attribute name="datatypeLibrary" type="ngURI"/>
+    </tag>
+    <empty/>
+  </elementRule>
+
+  <elementRule label="text">
+    <tag name="text">
+      <attribute name="datatypeLibrary" type="ngURI"/>
+    </tag>
+    <empty/>
+  </elementRule>
+
+  <elementRule label="data">
+    <tag name="data">
+      <attribute name="type" required="true" type="ngToken"/>
+      <attribute name="ns" type="ngURI"/>
+      <attribute name="datatypeLibrary" type="ngURI"/>
+    </tag>
+    <sequence>
+      <ref label="param" occurs="*"/>
+    </sequence>
+  </elementRule>
+
+  <elementRule label="param" type="string">
+    <tag name="param">
+      <attribute name="name" required="true" type="ngToken"/>
+      <attribute name="datatypeLibrary" type="ngURI"/>
+    </tag>
+  </elementRule>
+
+  <elementRule label="value" type="string">
+    <tag name="value">
+      <attribute name="type" type="token"/>
+      <attribute name="datatypeLibrary" type="ngURI"/>
+    </tag>
+  </elementRule>
+
+  <elementRule label="list">
+    <tag name="list">
+      <attribute name="datatypeLibrary" type="ngURI"/>
+    </tag>
+    <sequence>
+      <hedgeRef label="textHedge" occurs="*"/>
+    </sequence>
+  </elementRule>
+
+  <elementRule label="define">
+    <tag name="define">
+      <attribute name="name" required="true" type="ngToken"/>
+      <attribute name="ns" type="ngURI"/>
+      <attribute name="combine" type="ngToken"/>
+      <attribute name="datatypeLibrary" type="ngURI"/>
+    </tag>
+    <sequence>
+      <hedgeRef label="elementHedge" occurs="*"/>
+    </sequence>
+  </elementRule>
+
+  <elementRule label="ref">
+    <tag name="ref">
+      <attribute name="name" required="true" type="ngToken"/>
+      <attribute name="datatypeLibrary" type="ngURI"/>
+    </tag>
+    <empty/>
+  </elementRule>
+
+  <elementRule label="parentRef">
+    <tag name="parentRef">
+      <attribute name="name" required="true" type="ngToken"/>
+      <attribute name="datatypeLibrary" type="ngURI"/>
+    </tag>
+    <empty/>
+  </elementRule>
+
+  <elementRule label="notAllowed">
+    <tag name="notAllowed">
+      <attribute name="datatypeLibrary" type="ngURI"/>
+    </tag>
+    <empty/>
+  </elementRule>
+
+  <elementRule label="name" type="ngToken">
+    <tag name="name">
+      <attribute name="ns" type="ngURI"/>
+      <attribute name="datatypeLibrary" type="ngURI"/>
+    </tag>
+  </elementRule>
+
+  <elementRule label="anyName">
+    <tag name="anyName">
+      <attribute name="datatypeLibrary" type="ngURI"/>
+    </tag>
+    <ref label="except" occurs="?"/>
+  </elementRule>
+
+  <elementRule label="nsName">
+    <tag name="nsName">
+      <attribute name="ns" type="ngToken"/>
+      <attribute name="datatypeLibrary" type="ngURI"/>
+    </tag>
+    <ref label="except" occurs="?"/>
+  </elementRule>
+
+  <elementRule label="nameChoice">
+    <tag name="choice">
+      <attribute name="datatypeLibrary" type="ngURI"/>
+    </tag>
+    <hedgeRef label="nameClassHedge" occurs="+"/>
+  </elementRule>
+
+  <elementRule label="except">
+    <tag name="except">
+      <attribute name="datatypeLibrary" type="ngURI"/>
+    </tag>
+    <choice>
+      <hedgeRef label="nameClassHedge" occurs="+"/>
+    </choice>
+  </elementRule>
+
+  <hedgeRule label="nameClassHedge">
+    <choice>
+      <ref label="name"/>
+      <ref label="anyName"/>
+      <ref label="nsName"/>
+      <ref label="nameChoice"/>
+    </choice>
+  </hedgeRule>
+
+  <hedgeRule label="elementHedge">
+    <choice>
+      <ref label="element"/>
+      <ref label="attribute"/>
+      <ref label="text"/>
+      <ref label="data"/>
+      <ref label="value"/>
+      <ref label="list"/>
+      <ref label="empty"/>
+      <ref label="group"/>
+      <ref label="choice"/>
+      <ref label="interleave"/>
+      <ref label="mixed"/>
+      <ref label="optional"/>
+      <ref label="zeroOrMore"/>
+      <ref label="oneOrMore"/>
+      <ref label="ref"/>
+      <ref label="notAllowed"/>
+      <ref label="anyName"/>
+      <ref label="externalRef"/>
+      <ref label="grammar"/>
+      <ref label="parentRef"/>
+    </choice>
+  </hedgeRule>
+
+  <hedgeRule label="textHedge">
+    <choice>
+      <ref label="text"/>
+      <ref label="data"/>
+      <ref label="value"/>
+      <ref label="ref"/>
+      <ref label="list"/>
+      <ref label="notAllowed"/>
+      <ref label="empty"/>
+      <ref label="textChoice"/>
+      <ref label="textOptional"/>
+      <ref label="textOneOrMore"/>
+      <ref label="textZeroOrMore"/>
+    </choice>
+  </hedgeRule>
+
+  <elementRule label="textChoice">
+    <tag name="choice">
+      <attribute name="datatypeLibrary" type="ngURI"/>
+    </tag>
+    <sequence>
+      <hedgeRef label="textHedge" occurs="*"/>
+    </sequence>
+  </elementRule>
+
+  <elementRule label="textOptional">
+    <tag name="optional">
+      <attribute name="datatypeLibrary" type="ngURI"/>
+    </tag>
+    <sequence>
+      <hedgeRef label="textHedge"/>
+    </sequence>
+  </elementRule>
+
+  <elementRule label="textOneOrMore">
+    <tag name="oneOrMore">
+      <attribute name="datatypeLibrary" type="ngURI"/>
+    </tag>
+    <sequence>
+      <hedgeRef label="textHedge" occurs="+"/>
+    </sequence>
+  </elementRule>
+
+  <elementRule label="textZeroOrMore">
+    <tag name="zeroOrMore">
+      <attribute name="datatypeLibrary" type="ngURI"/>
+    </tag>
+    <sequence>
+      <hedgeRef label="textHedge" occurs="+"/>
+    </sequence>
+  </elementRule>
+
+</module>
+

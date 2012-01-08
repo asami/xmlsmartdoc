@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Module for XML Schemas: Part 2: Datatypes
+
+-->
+<!DOCTYPE module SYSTEM "relaxCore.dtd">
+<module
+        moduleVersion="1.0"
+        relaxCoreVersion="1.0"
+	      targetNamespace="http://www.xml.gr.jp/xmlns/relaxCore"
+        xmlns="http://www.xml.gr.jp/xmlns/relaxCore">
+
+  <hedgeRule label="minBound">
+    <choice>
+      <ref label="minInclusive"/>
+      <ref label="minExclusive"/>
+    </choice>
+  </hedgeRule>
+
+  <hedgeRule label="maxBound">
+    <choice>
+      <ref label="maxInclusive"/>
+      <ref label="maxExclusive"/>
+    </choice>
+  </hedgeRule>
+
+  <hedgeRule label="bounds">
+    <choice>
+      <hedgeRef label="minBound"/>
+      <hedgeRef label="maxBound"/>
+    </choice>
+  </hedgeRule>
+
+  <hedgeRule label="numeric">
+    <choice>
+      <ref label="totalDigits"/>
+      <ref label="fractionDigits"/>
+    </choice>
+  </hedgeRule>
+
+  <hedgeRule label="ordered">
+    <choice>
+      <hedgeRef label="bounds"/>
+      <hedgeRef label="numeric"/>
+    </choice>
+  </hedgeRule>
+
+  <hedgeRule label="unordered">
+    <choice>
+      <ref label="pattern"/>
+      <ref label="enumeration"/>
+      <ref label="whiteSpace"/>
+      <ref label="length"/>
+      <ref label="maxLength"/>
+      <ref label="minLength"/>
+    </choice>
+  </hedgeRule>
+
+  <hedgeRule label="facet">
+    <choice>
+      <hedgeRef label="ordered"/>
+      <hedgeRef label="unordered"/>
+    </choice>
+  </hedgeRule>
+
+  <attPool role="facetAttr">
+    <attribute name="value" required="true"/>
+  </attPool>
+
+  <attPool role="fixedAttr">
+    <attribute name="fixed" type="boolean"/>
+  </attPool>
+
+  <hedgeRule label="facetModel">
+    <ref label="annotation" occurs="?"/>
+  </hedgeRule>
+
+  <elementRule role="maxExclusive">
+    <hedgeRef label="facetModel"/>
+  </elementRule>
+
+  <tag name="maxExclusive">
+    <ref role="facetAttr"/>
+    <ref role="fixedAttr"/>
+  </tag>
+
+  <elementRule role="minExclusive">
+    <hedgeRef label="facetModel"/>
+  </elementRule>
+
+  <tag name="minExclusive">
+    <ref role="facetAttr"/>
+    <ref role="fixedAttr"/>
+  </tag>
+
+  <elementRule role="maxInclusive">
+    <hedgeRef label="facetModel"/>
+  </elementRule>
+
+  <tag name="maxInclusive">
+    <ref role="facetAttr"/>
+    <ref role="fixedAttr"/>
+  </tag>
+
+  <elementRule role="minInclusive">
+    <hedgeRef label="facetModel"/>
+  </elementRule>
+
+  <tag name="minInclusive">
+    <ref role="facetAttr"/>
+    <ref role="fixedAttr"/>
+  </tag>
+
+  <elementRule role="totalDigits">
+    <hedgeRef label="facetModel"/>
+  </elementRule>
+
+  <tag name="totalDigits">
+    <ref role="facetAttr"/>
+    <ref role="fixedAttr"/>
+  </tag>
+
+  <elementRule role="fractionDigits">
+    <hedgeRef label="facetModel"/>
+  </elementRule>
+
+  <tag name="fractionDigits">
+    <ref role="facetAttr"/>
+    <ref role="fixedAttr"/>
+  </tag>
+
+  <elementRule role="length">
+    <hedgeRef label="facetModel"/>
+  </elementRule>
+
+  <tag name="length">
+    <ref role="facetAttr"/>
+    <ref role="fixedAttr"/>
+  </tag>
+
+  <elementRule role="minLength">
+    <hedgeRef label="facetModel"/>
+  </elementRule>
+
+  <tag name="minLength">
+    <ref role="facetAttr"/>
+    <ref role="fixedAttr"/>
+  </tag>
+
+  <elementRule role="maxLength">
+    <hedgeRef label="facetModel"/>
+  </elementRule>
+
+  <tag name="maxLength">
+    <ref role="facetAttr"/>
+    <ref role="fixedAttr"/>
+  </tag>
+
+  <elementRule role="enumeration">
+    <hedgeRef label="facetModel"/>
+  </elementRule>
+
+  <tag name="enumeration">
+    <ref role="facetAttr"/>
+    <ref role="fixedAttr"/>
+  </tag>
+  <elementRule role="whiteSpace">
+    <hedgeRef label="facetModel"/>
+  </elementRule>
+
+  <tag name="whiteSpace">
+    <ref role="facetAttr"/>
+    <ref role="fixedAttr"/>
+  </tag>
+
+  <elementRule role="pattern">
+    <hedgeRef label="facetModel"/>
+  </elementRule>
+
+  <tag name="pattern">
+    <ref role="facetAttr"/>
+    <ref role="fixedAttr"/>
+  </tag>
+
+
+</module>

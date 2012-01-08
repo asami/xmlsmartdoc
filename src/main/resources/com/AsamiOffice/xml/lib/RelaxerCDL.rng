@@ -1,0 +1,1338 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
+         xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+         xmlns:java="http://www.relaxer.org/xmlns/relaxer/java"
+         xmlns:relaxer="http://www.relaxer.org/xmlns/relaxer"
+         xmlns:sql="http://www.relaxer.org/xmlns/relaxer/sql"
+         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
+         ns="http://www.relaxer.org/xmlns/cdl">
+  <start>
+    <choice>
+      <ref name="component"/>
+      <ref name="interface"/>
+    </choice>
+  </start>
+  <define name="component">
+    <element name="component">
+      <attribute name="name">
+        <data type="token"/>
+      </attribute>
+      <attribute name="namespace">
+        <data type="token"/>
+      </attribute>
+      <zeroOrMore>
+        <choice>
+          <ref name="interface"/>
+          <ref name="interfaceRef"/>
+          <ref name="javaInterface"/>
+        </choice>
+      </zeroOrMore>
+      <optional>
+        <ref name="specification"/>
+      </optional>
+      <optional>
+        <ref name="extension"/>
+      </optional>
+      <optional>
+        <ref name="realization"/>
+      </optional>
+    </element>
+  </define>
+  <define name="interface">
+    <element name="interface">
+      <attribute name="name">
+        <data type="token"/>
+      </attribute>
+      <optional>
+        <attribute name="namespace">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="java.type">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="javaType">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <zeroOrMore>
+        <choice>
+          <ref name="grammar"/>
+          <ref name="module"/>
+        </choice>
+      </zeroOrMore>
+      <zeroOrMore>
+        <choice>
+          <ref name="attributeLabel"/>
+          <ref name="attributeType"/>
+          <ref name="attributeJava"/>
+        </choice>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="operation"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="invariant"/>
+      </zeroOrMore>
+      <optional>
+        <element name="state-machine">
+          <empty/>
+        </element>
+      </optional>
+    </element>
+  </define>
+  <define name="grammar">
+    <element name="grammar">
+      <optional>
+        <attribute name="namespace">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="location">
+          <data type="token"/>
+        </attribute>
+      </optional>
+    </element>
+  </define>
+  <define name="module">
+    <element name="module">
+      <optional>
+        <attribute name="namespace">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="location">
+          <data type="token"/>
+        </attribute>
+      </optional>
+    </element>
+  </define>
+  <define name="attributeLabel">
+    <element name="attribute">
+      <attribute name="name">
+        <data type="token"/>
+      </attribute>
+      <optional>
+        <attribute name="mode">
+          <choice>
+            <value type="token">read-only</value>
+            <value type="token">write-only</value>
+            <value type="token">read-write</value>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="access">
+          <choice>
+            <value type="token">public</value>
+            <value type="token">protected</value>
+            <value type="token">private</value>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="default">
+          <text/>
+        </attribute>
+      </optional>
+      <attribute name="label">
+        <data type="token"/>
+      </attribute>
+      <optional>
+        <attribute name="java.type">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="javaType">
+          <data type="token"/>
+        </attribute>
+      </optional>
+    </element>
+  </define>
+  <define name="attributeType">
+    <element name="attribute">
+      <attribute name="name">
+        <data type="token"/>
+      </attribute>
+      <optional>
+        <attribute name="mode">
+          <choice>
+            <value type="token">read-only</value>
+            <value type="token">write-only</value>
+            <value type="token">read-write</value>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="access">
+          <choice>
+            <value type="token">public</value>
+            <value type="token">protected</value>
+            <value type="token">private</value>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="default">
+          <text/>
+        </attribute>
+      </optional>
+      <attribute name="type">
+        <data type="token"/>
+      </attribute>
+      <zeroOrMore>
+        <ref name="facet"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="facet">
+    <element name="facet">
+      <attribute name="name">
+        <data type="token"/>
+      </attribute>
+      <optional>
+        <attribute name="uri">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <data type="token"/>
+    </element>
+  </define>
+  <define name="attributeJava">
+    <element name="attribute">
+      <attribute name="name">
+        <data type="token"/>
+      </attribute>
+      <optional>
+        <attribute name="mode">
+          <choice>
+            <value type="token">read-only</value>
+            <value type="token">write-only</value>
+            <value type="token">read-write</value>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="access">
+          <choice>
+            <value type="token">public</value>
+            <value type="token">protected</value>
+            <value type="token">private</value>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="default">
+          <text/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="java.type">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="javaType">
+          <data type="token"/>
+        </attribute>
+      </optional>
+    </element>
+  </define>
+  <define name="operation">
+    <element name="operation">
+      <attribute name="name">
+        <data type="token"/>
+      </attribute>
+      <optional>
+        <attribute name="query">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <element name="description">
+          <text/>
+        </element>
+      </optional>
+      <zeroOrMore>
+        <choice>
+          <ref name="inLabel"/>
+          <ref name="inType"/>
+        </choice>
+      </zeroOrMore>
+      <optional>
+        <choice>
+          <ref name="outLabel"/>
+          <ref name="outType"/>
+        </choice>
+      </optional>
+      <optional>
+        <ref name="preCondition"/>
+      </optional>
+      <optional>
+        <ref name="postCondition"/>
+      </optional>
+    </element>
+  </define>
+  <define name="inLabel">
+    <element name="in">
+      <optional>
+        <attribute name="name">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="namespace">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <attribute name="label">
+        <data type="token"/>
+      </attribute>
+      <optional>
+        <attribute name="java.type">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="javaType">
+          <data type="token"/>
+        </attribute>
+      </optional>
+    </element>
+  </define>
+  <define name="inType">
+    <element name="in">
+      <optional>
+        <attribute name="name">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <attribute name="type">
+        <data type="token"/>
+      </attribute>
+      <optional>
+        <attribute name="java.type">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="javaType">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <zeroOrMore>
+        <ref name="facet"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="outLabel">
+    <element name="out">
+      <optional>
+        <attribute name="name">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="namespace">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <attribute name="label">
+        <data type="token"/>
+      </attribute>
+      <optional>
+        <attribute name="java.type">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="javaType">
+          <data type="token"/>
+        </attribute>
+      </optional>
+    </element>
+  </define>
+  <define name="outType">
+    <element name="out">
+      <optional>
+        <attribute name="name">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <attribute name="type">
+        <data type="token"/>
+      </attribute>
+      <optional>
+        <attribute name="java.type">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="javaType">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <zeroOrMore>
+        <ref name="facet"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="preCondition">
+    <element name="preCondition">
+      <zeroOrMore>
+        <choice>
+          <ref name="fetchOperation"/>
+          <ref name="fetchAttribute"/>
+          <ref name="fetchParameter"/>
+          <ref name="verifyType"/>
+          <ref name="greaterThan"/>
+          <ref name="fetchResult"/>
+          <ref name="verifyLabel"/>
+          <ref name="verifyExpression"/>
+          <ref name="and"/>
+          <ref name="or"/>
+          <ref name="equal"/>
+          <ref name="plus"/>
+          <ref name="subtract"/>
+          <ref name="times"/>
+          <ref name="lessThan"/>
+          <ref name="greaterEqualThan"/>
+          <ref name="value"/>
+          <ref name="not"/>
+          <ref name="divide"/>
+          <ref name="lessEqualThan"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="fetchOperation">
+    <element name="operation">
+      <optional>
+        <attribute name="namespace">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <attribute name="name">
+        <data type="token"/>
+      </attribute>
+      <optional>
+        <attribute name="path">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="timing">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <zeroOrMore>
+        <ref name="foParam"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="foParam">
+    <element name="in">
+      <attribute name="name">
+        <data type="token"/>
+      </attribute>
+      <optional>
+        <attribute name="type">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="label">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <text/>
+    </element>
+  </define>
+  <define name="fetchAttribute">
+    <element name="attribute">
+      <optional>
+        <attribute name="namespace">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <attribute name="name">
+        <data type="token"/>
+      </attribute>
+      <optional>
+        <attribute name="path">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="timing">
+          <data type="token"/>
+        </attribute>
+      </optional>
+    </element>
+  </define>
+  <define name="fetchParameter">
+    <element name="in">
+      <attribute name="name">
+        <data type="token"/>
+      </attribute>
+      <optional>
+        <attribute name="path">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="timing">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <text/>
+    </element>
+  </define>
+  <define name="verifyType">
+    <element name="verify">
+      <attribute name="type">
+        <data type="token"/>
+      </attribute>
+      <zeroOrMore>
+        <ref name="facet"/>
+      </zeroOrMore>
+      <choice>
+        <ref name="fetchOperation"/>
+        <ref name="fetchAttribute"/>
+        <ref name="fetchParameter"/>
+        <ref name="verifyType"/>
+        <ref name="greaterThan"/>
+        <ref name="fetchResult"/>
+        <ref name="verifyLabel"/>
+        <ref name="verifyExpression"/>
+        <ref name="and"/>
+        <ref name="or"/>
+        <ref name="not"/>
+        <ref name="plus"/>
+        <ref name="subtract"/>
+        <ref name="times"/>
+        <ref name="lessThan"/>
+        <ref name="greaterEqualThan"/>
+        <ref name="value"/>
+        <ref name="equal"/>
+        <ref name="divide"/>
+        <ref name="lessEqualThan"/>
+      </choice>
+    </element>
+  </define>
+  <define name="greaterThan">
+    <element name="greaterThan">
+      <choice>
+        <ref name="fetchOperation"/>
+        <ref name="fetchAttribute"/>
+        <ref name="fetchParameter"/>
+        <ref name="verifyType"/>
+        <ref name="verifyLabel"/>
+        <ref name="lessThan"/>
+        <ref name="fetchResult"/>
+        <ref name="verifyExpression"/>
+        <ref name="and"/>
+        <ref name="or"/>
+        <ref name="not"/>
+        <ref name="equal"/>
+        <ref name="plus"/>
+        <ref name="subtract"/>
+        <ref name="times"/>
+        <ref name="divide"/>
+        <ref name="greaterEqualThan"/>
+        <ref name="value"/>
+        <ref name="greaterThan"/>
+        <ref name="lessEqualThan"/>
+      </choice>
+      <choice>
+        <ref name="fetchOperation"/>
+        <ref name="fetchAttribute"/>
+        <ref name="fetchParameter"/>
+        <ref name="verifyType"/>
+        <ref name="verifyLabel"/>
+        <ref name="equal"/>
+        <ref name="lessThan"/>
+        <ref name="greaterEqualThan"/>
+        <ref name="fetchResult"/>
+        <ref name="verifyExpression"/>
+        <ref name="and"/>
+        <ref name="or"/>
+        <ref name="not"/>
+        <ref name="plus"/>
+        <ref name="subtract"/>
+        <ref name="times"/>
+        <ref name="divide"/>
+        <ref name="greaterThan"/>
+        <ref name="value"/>
+        <ref name="lessEqualThan"/>
+      </choice>
+    </element>
+  </define>
+  <define name="verifyLabel">
+    <element name="verify">
+      <attribute name="label">
+        <data type="token"/>
+      </attribute>
+      <choice>
+        <ref name="fetchOperation"/>
+        <ref name="fetchAttribute"/>
+        <ref name="fetchParameter"/>
+        <ref name="verifyType"/>
+        <ref name="lessThan"/>
+        <ref name="fetchResult"/>
+        <ref name="verifyLabel"/>
+        <ref name="verifyExpression"/>
+        <ref name="and"/>
+        <ref name="or"/>
+        <ref name="not"/>
+        <ref name="equal"/>
+        <ref name="plus"/>
+        <ref name="subtract"/>
+        <ref name="times"/>
+        <ref name="divide"/>
+        <ref name="greaterEqualThan"/>
+        <ref name="value"/>
+        <ref name="greaterThan"/>
+        <ref name="lessEqualThan"/>
+      </choice>
+    </element>
+  </define>
+  <define name="lessThan">
+    <element name="lessThan">
+      <choice>
+        <ref name="fetchOperation"/>
+        <ref name="fetchAttribute"/>
+        <ref name="fetchParameter"/>
+        <ref name="verifyType"/>
+        <ref name="fetchResult"/>
+        <ref name="verifyLabel"/>
+        <ref name="verifyExpression"/>
+        <ref name="and"/>
+        <ref name="or"/>
+        <ref name="not"/>
+        <ref name="plus"/>
+        <ref name="subtract"/>
+        <ref name="times"/>
+        <ref name="greaterEqualThan"/>
+        <ref name="value"/>
+        <ref name="equal"/>
+        <ref name="divide"/>
+        <ref name="lessThan"/>
+        <ref name="greaterThan"/>
+        <ref name="lessEqualThan"/>
+      </choice>
+      <choice>
+        <ref name="fetchOperation"/>
+        <ref name="fetchAttribute"/>
+        <ref name="fetchParameter"/>
+        <ref name="verifyType"/>
+        <ref name="fetchResult"/>
+        <ref name="verifyLabel"/>
+        <ref name="verifyExpression"/>
+        <ref name="and"/>
+        <ref name="or"/>
+        <ref name="plus"/>
+        <ref name="subtract"/>
+        <ref name="times"/>
+        <ref name="divide"/>
+        <ref name="lessThan"/>
+        <ref name="greaterEqualThan"/>
+        <ref name="value"/>
+        <ref name="not"/>
+        <ref name="equal"/>
+        <ref name="greaterThan"/>
+        <ref name="lessEqualThan"/>
+      </choice>
+    </element>
+  </define>
+  <define name="fetchResult">
+    <element name="out">
+      <optional>
+        <attribute name="path">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <text/>
+    </element>
+  </define>
+  <define name="verifyExpression">
+    <element name="verify">
+      <attribute name="expression">
+        <data type="token"/>
+      </attribute>
+    </element>
+  </define>
+  <define name="and">
+    <element name="and">
+      <zeroOrMore>
+        <choice>
+          <ref name="fetchOperation"/>
+          <ref name="fetchAttribute"/>
+          <ref name="fetchParameter"/>
+          <ref name="verifyType"/>
+          <ref name="fetchResult"/>
+          <ref name="verifyLabel"/>
+          <ref name="verifyExpression"/>
+          <ref name="value"/>
+          <ref name="and"/>
+          <ref name="or"/>
+          <ref name="not"/>
+          <ref name="equal"/>
+          <ref name="plus"/>
+          <ref name="subtract"/>
+          <ref name="times"/>
+          <ref name="divide"/>
+          <ref name="lessThan"/>
+          <ref name="greaterThan"/>
+          <ref name="lessEqualThan"/>
+          <ref name="greaterEqualThan"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="value">
+    <element name="value">
+      <data type="token"/>
+    </element>
+  </define>
+  <define name="or">
+    <element name="or">
+      <zeroOrMore>
+        <choice>
+          <ref name="fetchOperation"/>
+          <ref name="fetchAttribute"/>
+          <ref name="fetchParameter"/>
+          <ref name="verifyType"/>
+          <ref name="fetchResult"/>
+          <ref name="verifyLabel"/>
+          <ref name="verifyExpression"/>
+          <ref name="value"/>
+          <ref name="and"/>
+          <ref name="or"/>
+          <ref name="not"/>
+          <ref name="equal"/>
+          <ref name="plus"/>
+          <ref name="subtract"/>
+          <ref name="times"/>
+          <ref name="divide"/>
+          <ref name="lessThan"/>
+          <ref name="greaterThan"/>
+          <ref name="lessEqualThan"/>
+          <ref name="greaterEqualThan"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="not">
+    <element name="not">
+      <choice>
+        <ref name="fetchOperation"/>
+        <ref name="fetchAttribute"/>
+        <ref name="fetchParameter"/>
+        <ref name="verifyType"/>
+        <ref name="fetchResult"/>
+        <ref name="verifyLabel"/>
+        <ref name="verifyExpression"/>
+        <ref name="and"/>
+        <ref name="or"/>
+        <ref name="plus"/>
+        <ref name="subtract"/>
+        <ref name="times"/>
+        <ref name="divide"/>
+        <ref name="greaterEqualThan"/>
+        <ref name="value"/>
+        <ref name="not"/>
+        <ref name="equal"/>
+        <ref name="lessThan"/>
+        <ref name="greaterThan"/>
+        <ref name="lessEqualThan"/>
+      </choice>
+    </element>
+  </define>
+  <define name="plus">
+    <element name="plus">
+      <oneOrMore>
+        <choice>
+          <ref name="fetchOperation"/>
+          <ref name="fetchAttribute"/>
+          <ref name="fetchParameter"/>
+          <ref name="verifyType"/>
+          <ref name="fetchResult"/>
+          <ref name="verifyLabel"/>
+          <ref name="verifyExpression"/>
+          <ref name="value"/>
+          <ref name="and"/>
+          <ref name="or"/>
+          <ref name="not"/>
+          <ref name="equal"/>
+          <ref name="plus"/>
+          <ref name="subtract"/>
+          <ref name="times"/>
+          <ref name="divide"/>
+          <ref name="lessThan"/>
+          <ref name="greaterThan"/>
+          <ref name="lessEqualThan"/>
+          <ref name="greaterEqualThan"/>
+        </choice>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="equal">
+    <element name="equal">
+      <choice>
+        <ref name="fetchOperation"/>
+        <ref name="fetchAttribute"/>
+        <ref name="fetchParameter"/>
+        <ref name="verifyType"/>
+        <ref name="greaterThan"/>
+        <ref name="fetchResult"/>
+        <ref name="verifyLabel"/>
+        <ref name="verifyExpression"/>
+        <ref name="and"/>
+        <ref name="or"/>
+        <ref name="not"/>
+        <ref name="plus"/>
+        <ref name="subtract"/>
+        <ref name="times"/>
+        <ref name="lessThan"/>
+        <ref name="greaterEqualThan"/>
+        <ref name="value"/>
+        <ref name="equal"/>
+        <ref name="divide"/>
+        <ref name="lessEqualThan"/>
+      </choice>
+      <choice>
+        <ref name="fetchOperation"/>
+        <ref name="fetchAttribute"/>
+        <ref name="fetchParameter"/>
+        <ref name="verifyType"/>
+        <ref name="lessThan"/>
+        <ref name="fetchResult"/>
+        <ref name="verifyLabel"/>
+        <ref name="verifyExpression"/>
+        <ref name="and"/>
+        <ref name="or"/>
+        <ref name="not"/>
+        <ref name="equal"/>
+        <ref name="plus"/>
+        <ref name="subtract"/>
+        <ref name="times"/>
+        <ref name="divide"/>
+        <ref name="greaterEqualThan"/>
+        <ref name="value"/>
+        <ref name="greaterThan"/>
+        <ref name="lessEqualThan"/>
+      </choice>
+    </element>
+  </define>
+  <define name="subtract">
+    <element name="subtract">
+      <oneOrMore>
+        <choice>
+          <ref name="fetchOperation"/>
+          <ref name="fetchAttribute"/>
+          <ref name="fetchParameter"/>
+          <ref name="verifyType"/>
+          <ref name="fetchResult"/>
+          <ref name="verifyLabel"/>
+          <ref name="verifyExpression"/>
+          <ref name="value"/>
+          <ref name="and"/>
+          <ref name="or"/>
+          <ref name="not"/>
+          <ref name="equal"/>
+          <ref name="plus"/>
+          <ref name="subtract"/>
+          <ref name="times"/>
+          <ref name="divide"/>
+          <ref name="lessThan"/>
+          <ref name="greaterThan"/>
+          <ref name="lessEqualThan"/>
+          <ref name="greaterEqualThan"/>
+        </choice>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="times">
+    <element name="times">
+      <oneOrMore>
+        <choice>
+          <ref name="fetchOperation"/>
+          <ref name="fetchAttribute"/>
+          <ref name="fetchParameter"/>
+          <ref name="verifyType"/>
+          <ref name="fetchResult"/>
+          <ref name="verifyLabel"/>
+          <ref name="verifyExpression"/>
+          <ref name="value"/>
+          <ref name="and"/>
+          <ref name="or"/>
+          <ref name="not"/>
+          <ref name="equal"/>
+          <ref name="plus"/>
+          <ref name="subtract"/>
+          <ref name="times"/>
+          <ref name="divide"/>
+          <ref name="lessThan"/>
+          <ref name="greaterThan"/>
+          <ref name="lessEqualThan"/>
+          <ref name="greaterEqualThan"/>
+        </choice>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="divide">
+    <element name="divide">
+      <oneOrMore>
+        <choice>
+          <ref name="fetchOperation"/>
+          <ref name="fetchAttribute"/>
+          <ref name="fetchParameter"/>
+          <ref name="verifyType"/>
+          <ref name="fetchResult"/>
+          <ref name="verifyLabel"/>
+          <ref name="verifyExpression"/>
+          <ref name="value"/>
+          <ref name="and"/>
+          <ref name="or"/>
+          <ref name="not"/>
+          <ref name="equal"/>
+          <ref name="plus"/>
+          <ref name="subtract"/>
+          <ref name="times"/>
+          <ref name="divide"/>
+          <ref name="lessThan"/>
+          <ref name="greaterThan"/>
+          <ref name="lessEqualThan"/>
+          <ref name="greaterEqualThan"/>
+        </choice>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="lessEqualThan">
+    <element name="lessEqualThan">
+      <choice>
+        <ref name="fetchOperation"/>
+        <ref name="fetchAttribute"/>
+        <ref name="fetchParameter"/>
+        <ref name="verifyType"/>
+        <ref name="equal"/>
+        <ref name="lessThan"/>
+        <ref name="greaterEqualThan"/>
+        <ref name="fetchResult"/>
+        <ref name="verifyLabel"/>
+        <ref name="verifyExpression"/>
+        <ref name="and"/>
+        <ref name="or"/>
+        <ref name="not"/>
+        <ref name="plus"/>
+        <ref name="subtract"/>
+        <ref name="times"/>
+        <ref name="divide"/>
+        <ref name="greaterThan"/>
+        <ref name="value"/>
+        <ref name="lessEqualThan"/>
+      </choice>
+      <choice>
+        <ref name="fetchOperation"/>
+        <ref name="fetchAttribute"/>
+        <ref name="fetchParameter"/>
+        <ref name="verifyType"/>
+        <ref name="verifyLabel"/>
+        <ref name="equal"/>
+        <ref name="lessThan"/>
+        <ref name="greaterThan"/>
+        <ref name="greaterEqualThan"/>
+        <ref name="fetchResult"/>
+        <ref name="verifyExpression"/>
+        <ref name="and"/>
+        <ref name="or"/>
+        <ref name="not"/>
+        <ref name="plus"/>
+        <ref name="subtract"/>
+        <ref name="times"/>
+        <ref name="divide"/>
+        <ref name="lessEqualThan"/>
+        <ref name="value"/>
+      </choice>
+    </element>
+  </define>
+  <define name="greaterEqualThan">
+    <element name="greaterEqualThan">
+      <choice>
+        <ref name="fetchOperation"/>
+        <ref name="fetchAttribute"/>
+        <ref name="fetchParameter"/>
+        <ref name="verifyType"/>
+        <ref name="fetchResult"/>
+        <ref name="verifyLabel"/>
+        <ref name="verifyExpression"/>
+        <ref name="and"/>
+        <ref name="or"/>
+        <ref name="plus"/>
+        <ref name="subtract"/>
+        <ref name="times"/>
+        <ref name="divide"/>
+        <ref name="value"/>
+        <ref name="not"/>
+        <ref name="equal"/>
+        <ref name="lessThan"/>
+        <ref name="greaterThan"/>
+        <ref name="lessEqualThan"/>
+        <ref name="greaterEqualThan"/>
+      </choice>
+      <choice>
+        <ref name="fetchOperation"/>
+        <ref name="fetchAttribute"/>
+        <ref name="fetchParameter"/>
+        <ref name="verifyType"/>
+        <ref name="equal"/>
+        <ref name="lessThan"/>
+        <ref name="fetchResult"/>
+        <ref name="verifyLabel"/>
+        <ref name="verifyExpression"/>
+        <ref name="and"/>
+        <ref name="or"/>
+        <ref name="not"/>
+        <ref name="plus"/>
+        <ref name="subtract"/>
+        <ref name="times"/>
+        <ref name="divide"/>
+        <ref name="greaterThan"/>
+        <ref name="greaterEqualThan"/>
+        <ref name="value"/>
+        <ref name="lessEqualThan"/>
+      </choice>
+    </element>
+  </define>
+  <define name="postCondition">
+    <element name="postCondition">
+      <zeroOrMore>
+        <choice>
+          <ref name="fetchOperation"/>
+          <ref name="fetchAttribute"/>
+          <ref name="fetchParameter"/>
+          <ref name="verifyType"/>
+          <ref name="greaterThan"/>
+          <ref name="fetchResult"/>
+          <ref name="verifyLabel"/>
+          <ref name="verifyExpression"/>
+          <ref name="and"/>
+          <ref name="or"/>
+          <ref name="equal"/>
+          <ref name="plus"/>
+          <ref name="subtract"/>
+          <ref name="times"/>
+          <ref name="lessThan"/>
+          <ref name="greaterEqualThan"/>
+          <ref name="value"/>
+          <ref name="not"/>
+          <ref name="divide"/>
+          <ref name="lessEqualThan"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="invariant">
+    <element name="invariant">
+      <zeroOrMore>
+        <choice>
+          <ref name="fetchOperation"/>
+          <ref name="fetchAttribute"/>
+          <ref name="fetchParameter"/>
+          <ref name="verifyType"/>
+          <ref name="greaterThan"/>
+          <ref name="fetchResult"/>
+          <ref name="verifyLabel"/>
+          <ref name="verifyExpression"/>
+          <ref name="and"/>
+          <ref name="or"/>
+          <ref name="equal"/>
+          <ref name="plus"/>
+          <ref name="subtract"/>
+          <ref name="times"/>
+          <ref name="lessThan"/>
+          <ref name="greaterEqualThan"/>
+          <ref name="value"/>
+          <ref name="not"/>
+          <ref name="divide"/>
+          <ref name="lessEqualThan"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="interfaceRef">
+    <element name="interface">
+      <attribute name="location">
+        <data type="token"/>
+      </attribute>
+      <optional>
+        <attribute name="java.type">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="javaType">
+          <data type="token"/>
+        </attribute>
+      </optional>
+    </element>
+  </define>
+  <define name="javaInterface">
+    <element name="interface">
+      <optional>
+        <attribute name="java.type">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="javaType">
+          <data type="token"/>
+        </attribute>
+      </optional>
+    </element>
+  </define>
+  <define name="specification">
+    <element name="specification">
+      <zeroOrMore>
+        <ref name="invariant"/>
+      </zeroOrMore>
+      <optional>
+        <element name="state-machine">
+          <empty/>
+        </element>
+      </optional>
+    </element>
+  </define>
+  <define name="extension">
+    <element name="extension">
+      <zeroOrMore>
+        <ref name="provider"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <choice>
+          <ref name="variableLabel"/>
+          <ref name="variableType"/>
+          <ref name="variableJava"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="provider">
+    <element name="provider">
+      <attribute name="name">
+        <data type="token"/>
+      </attribute>
+      <choice>
+        <ref name="interface"/>
+        <ref name="interfaceRef"/>
+        <ref name="javaInterface"/>
+      </choice>
+    </element>
+  </define>
+  <define name="variableLabel">
+    <element name="variable">
+      <attribute name="name">
+        <data type="token"/>
+      </attribute>
+      <optional>
+        <attribute name="mode">
+          <choice>
+            <value type="token">read-only</value>
+            <value type="token">write-only</value>
+            <value type="token">read-write</value>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="access">
+          <choice>
+            <value type="token">public</value>
+            <value type="token">protected</value>
+            <value type="token">private</value>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="default">
+          <text/>
+        </attribute>
+      </optional>
+      <attribute name="label">
+        <data type="token"/>
+      </attribute>
+      <optional>
+        <attribute name="java.type">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="javaType">
+          <data type="token"/>
+        </attribute>
+      </optional>
+    </element>
+  </define>
+  <define name="variableType">
+    <element name="variable">
+      <attribute name="name">
+        <data type="token"/>
+      </attribute>
+      <optional>
+        <attribute name="mode">
+          <choice>
+            <value type="token">read-only</value>
+            <value type="token">write-only</value>
+            <value type="token">read-write</value>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="access">
+          <choice>
+            <value type="token">public</value>
+            <value type="token">protected</value>
+            <value type="token">private</value>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="default">
+          <text/>
+        </attribute>
+      </optional>
+      <attribute name="type">
+        <data type="token"/>
+      </attribute>
+      <zeroOrMore>
+        <ref name="facet"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="variableJava">
+    <element name="variable">
+      <attribute name="name">
+        <data type="token"/>
+      </attribute>
+      <optional>
+        <attribute name="mode">
+          <choice>
+            <value type="token">read-only</value>
+            <value type="token">write-only</value>
+            <value type="token">read-write</value>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="access">
+          <choice>
+            <value type="token">public</value>
+            <value type="token">protected</value>
+            <value type="token">private</value>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="default">
+          <text/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="java.type">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="javaType">
+          <data type="token"/>
+        </attribute>
+      </optional>
+    </element>
+  </define>
+  <define name="realization">
+    <element name="realization">
+      <zeroOrMore>
+        <ref name="componentRef"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="modelRef"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="resourceRef"/>
+      </zeroOrMore>
+      <optional>
+        <ref name="relaxer"/>
+      </optional>
+    </element>
+  </define>
+  <define name="componentRef">
+    <element name="component">
+      <attribute name="role">
+        <data type="token"/>
+      </attribute>
+      <attribute name="java.type">
+        <data type="token"/>
+      </attribute>
+      <optional>
+        <attribute name="jndi.name">
+          <data type="token"/>
+        </attribute>
+      </optional>
+    </element>
+  </define>
+  <define name="modelRef">
+    <element name="model">
+      <attribute name="role">
+        <data type="token"/>
+      </attribute>
+      <attribute name="java.type">
+        <data type="token"/>
+      </attribute>
+    </element>
+  </define>
+  <define name="resourceRef">
+    <element name="resource">
+      <attribute name="role">
+        <data type="token"/>
+      </attribute>
+      <attribute name="java.type">
+        <data type="token"/>
+      </attribute>
+      <optional>
+        <attribute name="jndi.name">
+          <data type="token"/>
+        </attribute>
+      </optional>
+    </element>
+  </define>
+  <define name="relaxer">
+    <element name="relaxer">
+      <optional>
+        <attribute name="package">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="java.name.class.prefix">
+          <data type="token"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="jdbc">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="cdl.sp.package">
+          <data type="token"/>
+        </attribute>
+      </optional>
+    </element>
+  </define>
+</grammar>

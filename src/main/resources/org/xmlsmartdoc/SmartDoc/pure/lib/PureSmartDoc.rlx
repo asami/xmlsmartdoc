@@ -1,0 +1,642 @@
+<?xml version="1.0"?>
+<!DOCTYPE module SYSTEM "relaxCore.dtd">
+<module relaxCoreVersion="1.0">
+  <annotation>
+    <documentation>
+@since   Sep. 24, 2000
+@version Nov. 14, 2001
+@author  ASAMI, Tomoharu (asami@zeomtech.com)
+    </documentation>
+  </annotation>
+
+  <interface>
+    <export label="doc"/>
+  </interface>
+
+  <attPool role="CommonAttr">
+    <attribute name="xml:lang" type="language"/>
+    <attribute name="xml:space" type="string"/>
+    <attribute name="id" type="ID"/>
+    <attribute name="class" type="NMTOKEN"/>
+    <attribute name="style" type="string"/>
+  </attPool>
+
+  <attPool role="CellAttr">
+    <attribute name="rowspan" type="int"/>
+    <attribute name="colspan" type="int"/>
+    <attribute name="align" type="NMTOKEN">
+      <enumeration value="left"/>
+      <enumeration value="center"/>
+      <enumeration value="right"/>
+    </attribute>
+  </attPool>
+
+  <attPool role="href">
+    <attribute name="xml:link" type="NMTOKEN"/>
+    <attribute name="href" type="string"/>
+  </attPool>
+
+  <hedgeRule label="inline">
+    <choice>
+      <ref label="p"/>
+      <ref label="sen"/>
+      <ref label="img"/>
+      <ref label="a"/>
+      <ref label="cite"/>
+      <ref label="comment"/>
+      <ref label="note"/>
+      <ref label="span"/>
+      <ref label="b"/>
+      <ref label="i"/>
+      <ref label="dfn"/>
+      <ref label="tt"/>
+      <ref label="em"/>
+      <ref label="abbr"/>
+      <ref label="acronym"/>
+      <ref label="code"/>
+      <ref label="q"/>
+    </choice>
+  </hedgeRule>
+
+  <hedgeRule label="block">
+    <choice>
+      <ref label="fyi"/>
+      <ref label="figure"/>
+      <ref label="ul"/>
+      <ref label="ol"/>
+      <ref label="li"/>
+      <ref label="dl"/>
+      <ref label="dt"/>
+      <ref label="dd"/>
+      <ref label="table"/>
+      <ref label="rowgroup"/>
+      <ref label="colgroup"/>
+      <ref label="col"/>
+      <ref label="thead"/>
+      <ref label="tfoot"/>
+      <ref label="tbody"/>
+      <ref label="tr"/>
+      <ref label="th"/>
+      <ref label="td"/>
+      <ref label="tnote"/>
+      <ref label="pre"/>
+      <ref label="program"/>
+      <ref label="console"/>
+      <ref label="div"/>
+      <ref label="blockquote"/>
+    </choice>
+  </hedgeRule>
+
+  <tag name="doc">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule label="doc" role="doc">
+    <sequence>
+      <ref label="head"/>
+      <ref label="body"/>
+    </sequence>
+  </elementRule>
+
+  <tag name="head">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="head">
+    <choice occurs="*">
+      <ref label="title"/>
+      <ref label="author"/>
+      <ref label="hp"/>
+      <ref label="date"/>
+      <ref label="abstract"/>
+    </choice>
+  </elementRule>
+
+  <tag name="title">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="title">
+    <mixed>
+      <hedgeRef label="inline" occurs="*"/>
+    </mixed>
+  </elementRule>
+
+  <tag name="author">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="author">
+    <mixed>
+      <hedgeRef label="inline" occurs="*"/>
+    </mixed>
+  </elementRule>
+
+  <tag name="hp">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="hp" type="string"/>
+
+  <tag name="date">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="date">
+    <mixed>
+      <hedgeRef label="inline" occurs="*"/>
+    </mixed>
+  </elementRule>
+
+  <tag name="abstract">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="abstract">
+    <mixed>
+      <hedgeRef label="inline" occurs="*"/>
+    </mixed>
+  </elementRule>
+
+  <tag name="body">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="body">
+    <choice occurs="*">
+      <ref label="part"/>
+      <ref label="chapter"/>
+      <ref label="section"/>
+      <ref label="appendix"/>
+      <hedgeRef label="block"/>
+      <hedgeRef label="inline"/>
+    </choice>
+  </elementRule>
+
+  <tag name="part">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="part">
+    <sequence>
+      <ref label="title"/>
+      <choice occurs="*">
+        <ref label="chapter"/>
+        <hedgeRef label="block"/>
+        <hedgeRef label="inline"/>
+      </choice>
+    </sequence>
+  </elementRule>
+
+  <tag name="chapter">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="chapter">
+    <sequence>
+      <ref label="title"/>
+      <choice occurs="*">
+        <ref label="section"/>
+        <hedgeRef label="block"/>
+        <hedgeRef label="inline"/>
+      </choice>
+    </sequence>
+  </elementRule>
+
+  <tag name="section">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="section">
+    <sequence>
+      <ref label="title"/>
+      <choice occurs="*">
+        <ref label="subsection"/>
+        <hedgeRef label="block"/>
+        <hedgeRef label="inline"/>
+      </choice>
+    </sequence>
+  </elementRule>
+
+  <tag name="subsection">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="subsection">
+    <sequence>
+      <ref label="title"/>
+      <choice occurs="*">
+        <ref label="subsubsection"/>
+        <hedgeRef label="block"/>
+        <hedgeRef label="inline"/>
+      </choice>
+    </sequence>
+  </elementRule>
+
+  <tag name="subsubsection">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="subsubsection">
+    <sequence>
+      <ref label="title"/>
+      <choice occurs="*">
+        <hedgeRef label="block"/>
+        <hedgeRef label="inline"/>
+      </choice>
+    </sequence>
+  </elementRule>
+
+  <tag name="appendix">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="appendix">
+    <sequence>
+      <ref label="title"/>
+      <choice occurs="*">
+        <ref label="part"/>
+        <ref label="chapter"/>
+        <ref label="section"/>
+        <hedgeRef label="block"/>
+        <hedgeRef label="inline"/>
+      </choice>
+    </sequence>
+  </elementRule>
+
+  <tag name="p">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="p">
+    <mixed>
+      <hedgeRef label="inline" occurs="*"/>
+    </mixed>
+  </elementRule>
+
+  <tag name="sen">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="sen">
+    <mixed>
+      <hedgeRef label="inline" occurs="*"/>
+    </mixed>
+  </elementRule>
+
+  <tag name="img">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="img">
+    <mixed>
+      <hedgeRef label="inline" occurs="*"/>
+    </mixed>
+  </elementRule>
+
+  <tag name="a">
+    <ref role="CommonAttr"/>
+    <attribute name="href" type="anyURI"/>
+  </tag>
+  <elementRule role="a">
+    <mixed>
+      <hedgeRef label="inline" occurs="*"/>
+    </mixed>
+  </elementRule>
+
+  <tag name="cite">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="cite">
+    <mixed>
+      <hedgeRef label="inline" occurs="*"/>
+    </mixed>
+  </elementRule>
+
+  <tag name="comment">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="comment">
+    <mixed>
+      <hedgeRef label="inline" occurs="*"/>
+    </mixed>
+  </elementRule>
+
+  <tag name="note">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="note">
+    <mixed>
+      <hedgeRef label="inline" occurs="*"/>
+    </mixed>
+  </elementRule>
+
+  <tag name="span">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="span">
+    <mixed>
+      <hedgeRef label="inline" occurs="*"/>
+    </mixed>
+  </elementRule>
+
+  <tag name="b">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="b">
+    <mixed>
+      <hedgeRef label="inline" occurs="*"/>
+    </mixed>
+  </elementRule>
+
+  <tag name="i">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="i">
+    <mixed>
+      <hedgeRef label="inline" occurs="*"/>
+    </mixed>
+  </elementRule>
+
+  <tag name="dfn">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="dfn">
+    <mixed>
+      <hedgeRef label="inline" occurs="*"/>
+    </mixed>
+  </elementRule>
+
+  <tag name="tt">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="tt">
+    <mixed>
+      <hedgeRef label="inline" occurs="*"/>
+    </mixed>
+  </elementRule>
+
+  <tag name="em">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="em">
+    <mixed>
+      <hedgeRef label="inline" occurs="*"/>
+    </mixed>
+  </elementRule>
+
+  <tag name="abbr">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="abbr">
+    <mixed>
+      <hedgeRef label="inline" occurs="*"/>
+    </mixed>
+  </elementRule>
+
+  <tag name="acronym">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="acronym">
+    <mixed>
+      <hedgeRef label="inline" occurs="*"/>
+    </mixed>
+  </elementRule>
+
+  <tag name="code">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="code">
+    <mixed>
+      <hedgeRef label="inline" occurs="*"/>
+    </mixed>
+  </elementRule>
+
+  <tag name="q">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="q">
+    <mixed>
+      <hedgeRef label="inline" occurs="*"/>
+    </mixed>
+  </elementRule>
+
+  <tag name="fyi">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="fyi">
+    <mixed>
+      <ref label="title" occurs="?"/>
+      <choice occurs="*">
+        <hedgeRef label="inline"/>
+        <hedgeRef label="block"/>
+      </choice>
+    </mixed>
+  </elementRule>
+
+  <tag name="figure">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="figure">
+    <mixed>
+      <ref label="title" occurs="?"/>
+    </mixed>
+  </elementRule>
+
+  <tag name="ul">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="ul">
+    <choice occurs="*">
+      <ref label="ul"/>
+      <ref label="li"/>
+    </choice>
+  </elementRule>
+
+  <tag name="ol">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="ol">
+    <choice occurs="*">
+      <ref label="ol"/>
+      <ref label="li"/>
+    </choice>
+  </elementRule>
+
+  <tag name="li">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="li">
+    <mixed>
+      <choice occurs="*">
+        <hedgeRef label="inline"/>
+        <hedgeRef label="block"/>
+      </choice>
+    </mixed>
+  </elementRule>
+
+  <tag name="dl">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="dl">
+    <sequence occurs="*">
+      <ref label="dt"/>
+      <ref label="dd"/>
+    </sequence>
+  </elementRule>
+
+  <tag name="dt">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="dt">
+    <mixed>
+      <choice occurs="*">
+        <hedgeRef label="inline"/>
+      </choice>
+    </mixed>
+  </elementRule>
+
+  <tag name="dd">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="dd">
+    <mixed>
+      <choice occurs="*">
+        <hedgeRef label="inline"/>
+      </choice>
+    </mixed>
+  </elementRule>
+
+  <tag name="table">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="table">
+    <sequence>
+      <ref label="title" occurs="?"/>
+      <ref label="colgroup" occurs="*"/>
+      <ref label="thead" occurs="?"/>
+      <ref label="tfoot" occurs="?"/>
+      <ref label="tbody"/>
+      <ref label="tnote" occurs="?"/>
+    </sequence>
+  </elementRule>
+
+  <tag name="rowgroup">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="rowgroup" type="emptyString">
+  </elementRule>
+
+  <tag name="colgroup">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="colgroup">
+    <ref label="col" occurs="*"/>
+  </elementRule>
+
+  <tag name="col">
+    <ref role="CommonAttr"/>
+    <attribute name="align" type="string"/>
+  </tag>
+  <elementRule role="col" type="emptyString">
+  </elementRule>
+
+  <tag name="thead">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="thead">
+    <ref label="tr" occurs="*"/>
+  </elementRule>
+
+  <tag name="tfoot">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="tfoot">
+    <ref label="tr" occurs="*"/>
+  </elementRule>
+
+  <tag name="tbody">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="tbody">
+    <ref label="tr" occurs="*"/>
+  </elementRule>
+
+  <tag name="tr">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="tr">
+    <choice occurs="*">
+      <ref label="th"/>
+      <ref label="td"/>
+    </choice>
+  </elementRule>
+
+  <tag name="th">
+    <ref role="CommonAttr"/>
+    <ref role="CellAttr"/>
+  </tag>
+  <elementRule role="th">
+    <mixed>
+      <choice occurs="*">
+        <hedgeRef label="inline"/>
+      </choice>
+    </mixed>
+  </elementRule>
+
+  <tag name="td">
+    <ref role="CommonAttr"/>
+    <ref role="CellAttr"/>
+  </tag>
+  <elementRule role="td">
+    <mixed>
+      <choice occurs="*">
+        <hedgeRef label="inline"/>
+      </choice>
+    </mixed>
+  </elementRule>
+
+  <tag name="tnote">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="tnote">
+    <mixed>
+      <empty/>
+    </mixed>
+  </elementRule>
+
+  <tag name="pre">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="pre">
+    <mixed>
+      <ref label="title" occurs="?"/>
+    </mixed>
+  </elementRule>
+
+  <tag name="program">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="program">
+    <mixed>
+      <ref label="title" occurs="?"/>
+    </mixed>
+  </elementRule>
+
+  <tag name="console">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="console">
+    <mixed>
+      <ref label="title" occurs="?"/>
+    </mixed>
+  </elementRule>
+
+  <tag name="div">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="div">
+    <mixed>
+      <choice occurs="*">
+        <hedgeRef label="block"/>
+        <hedgeRef label="inline"/>
+      </choice>
+    </mixed>
+  </elementRule>
+
+  <tag name="blockquote">
+    <ref role="CommonAttr"/>
+  </tag>
+  <elementRule role="blockquote">
+    <mixed>
+      <choice occurs="*">
+        <hedgeRef label="block"/>
+        <hedgeRef label="inline"/>
+      </choice>
+    </mixed>
+  </elementRule>
+
+</module>

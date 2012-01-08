@@ -1,0 +1,135 @@
+<!--
+    article.css
+
+    since   : Sep.  8, 1999
+    version : Sep.  9, 1999
+    author  : ASAMI, Tomoharu (tasami@ibm.net)
+-->
+
+doc {
+  display: node;
+}
+
+head {
+  display: node;
+}
+
+head title {
+  display: block;
+  font-size: 2em;
+  color: maroon;
+  background: gold;
+  text-align: center;
+  border-style: outset;
+  border-color: yellow;
+  padding: 10pt;
+  margin: .67em 0;
+  margin-left: 60pt;
+  margin-right: 60pt;
+}
+
+body {
+  paddinx: 8px;
+  line-height: 1.33;
+}
+
+section title {
+  display: block;
+  font-size: 1.5em;
+  font-weight: bolder;
+  color: khaki;
+  background: #666666;
+  padding: 3pt;
+  margin: .83em 0;
+}
+
+subsection title {
+  display: block;
+  font-size: 1.17em;
+  font-weight: bolder;
+  color: black;
+  background: #aaaaaa;
+  padding: 2pt;
+  margin: 1em 0;
+  margin-right: 100pt;
+}
+
+subsubsection title {
+  display: block;
+  font-weight: bolder;
+  color: black;
+  background: #eeeeee;
+  padding: 1pt;
+  margin: 1.33em 0;
+  margin-right: 200pt;
+}
+
+p {
+  display: block;
+  margin: 0pt;
+  text-indent: 1em;
+}
+
+ul {
+  display: block;
+  margin: 1.33em 0;
+  margin-left: 40px;
+}
+
+ol {
+  display: block;
+  line-style-type: decimal;
+  margin: 1.33em 0;
+  margin-left: 40px;
+}
+
+dl {
+  display: block;
+  margin: 1.33em 0;
+}
+
+li {
+  display: list-item;
+}
+
+table {
+  display: table;
+}
+
+table title {
+  display: table-caption;
+}
+
+tr {
+  display: table-row;
+}
+
+thead {
+  display: table-header-group;
+}
+
+tfoot {
+  display: table-footer-group;
+}
+
+tbody {
+  display: table-row-group;
+}
+
+col {
+  display: table-column;
+}
+
+colgroup {
+  display: table-column-group;
+}
+
+th {
+  display: table-cell;
+  font-weight: bolder;
+  text-align: center;
+}
+
+td {
+  display: table-cell;
+}
