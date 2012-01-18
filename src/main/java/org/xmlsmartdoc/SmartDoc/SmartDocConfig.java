@@ -123,6 +123,10 @@ public class SmartDocConfig extends GeneratorConfig {
             project_ = getProject_();
             dir_ = _getProjectDirectory(source_.getFile());
         }
+        File dir = info.getParameterAsFile("project.dir");
+        if (dir != null) {
+            dir_ = dir;
+        }
         targetDir_ = info.getParameterAsFile("dir");
         targetDirImage_ = info.getParameterAsFile("dir.image");
         deploy_ = info.getParameterAsString("split");

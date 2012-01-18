@@ -64,7 +64,8 @@ import com.AsamiOffice.util.ULocale;
  * SmartDocModel
  *
  * @since   Oct. 19, 1998
- * @version Jun. 10, 2005
+ *  version Jun. 10, 2005
+ * @version Jan. 18, 2012
  * @author  ASAMI, Tomoharu (asami@XMLSmartDoc.org)
  */
 public class SmartDocModel extends GeneratorModel {
@@ -193,11 +194,18 @@ public class SmartDocModel extends GeneratorModel {
     }
 
     private void _setupBaseDirectory(DocContext context, URL source) {
-        String parent = UString.getContainerPathname(source.toString());
+      File dir = config_.getProjectDirectory();
+      if (dir != null) {
+          context.setBaseDirctory(dir.toString());
+      } else if (source == null) {
+          return;
+      } else {
+          String parent = UString.getContainerPathname(source.toString());
 //        System.out.println("parent = " + parent);
-        if (parent != null && !"".equals(parent)) {
-            context.setBaseDirctory(parent);
-        }
+          if (parent != null && !"".equals(parent)) {
+              context.setBaseDirctory(parent);
+          }
+      }
     }
 
     public boolean isSdocReport() {
