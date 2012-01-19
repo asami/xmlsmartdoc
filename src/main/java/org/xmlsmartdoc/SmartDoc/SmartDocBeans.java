@@ -49,7 +49,7 @@ import com.AsamiOffice.io.UURL;
  *
  * @since   Jun. 27, 2000
  *  version Dec.  2, 2003
- * @version Jan. 18, 2012
+ * @version Jan. 19, 2012
  * @author  ASAMI, Tomoharu (asami@AsamiOffice.com)
  */
 public class SmartDocBeans implements Serializable {
@@ -58,8 +58,8 @@ public class SmartDocBeans implements Serializable {
     private Document inputDocument_;
     private String encoding_ = "UTF-8";
     private String format_ = "html4";
-    private String packager_ = "none";
-    private String project_direcotry_ = null;
+    private String packager_ = "value";
+    private String project_directory_ = null;
     private List args_ = new ArrayList(); // List<String>
     private XSLTBeans preXSLTBeans_ = null;
     private XSLTBeans postXSLTBeans_ = null;
@@ -80,7 +80,7 @@ public class SmartDocBeans implements Serializable {
     }
 
     public final void setProjectDirectory(String dir) {
-        project_direcotry_ = dir;
+        project_directory_ = dir;
     }
 
     public final void setArgs(String[] args) {
@@ -120,8 +120,8 @@ public class SmartDocBeans implements Serializable {
         if (inputURI_ != null) {
             list.add(inputURI_);
         }
-        if (project_direcotry_ != null) {
-          list.add("-project.dir:" + project_direcotry_);
+        if (project_directory_ != null) {
+          list.add("-project.dir:" + project_directory_);
         }
         String[] arrayRivised = new String[list.size()];
         return ((String[])list.toArray(arrayRivised));

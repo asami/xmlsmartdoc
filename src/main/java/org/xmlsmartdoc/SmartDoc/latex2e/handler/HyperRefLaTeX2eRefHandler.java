@@ -27,11 +27,15 @@ import org.xmlsmartdoc.SmartDoc.latex2e.*;
  * HyperRefLaTeX2eRefHandler
  *
  * @since   Jan. 31, 1999
- * @version Mar. 22, 2002
+ *  version Mar. 22, 2002
+ * @version Jan. 19, 2012
  * @author  ASAMI, Tomoharu (asami@XMLSmartDoc.org)
  */
 public class HyperRefLaTeX2eRefHandler implements LaTeX2eRefHandler {
     String[] options_;
+    String aux_ = 
+        "\\ifnum 42146=\\euc\"A4A2 \\AtBeginDvi{\\special{pdf:tounicode EUC-UCS2}}\\else\n" +
+        " \\AtBeginDvi{\\special{pdf:tounicode 90ms-RKSJ-UCS2}}\\fi\n";
 
     public void setup(LaTeX2eConfig config) {
 	List options = new ArrayList();
@@ -51,7 +55,7 @@ public class HyperRefLaTeX2eRefHandler implements LaTeX2eRefHandler {
     public LaTeX2ePackage[] getPackages() {
 	LaTeX2ePackage[] packages = new LaTeX2ePackage[1];
 	if (options_ != null) {
-	    packages[0] = new LaTeX2ePackage("hyperref", options_);
+	    packages[0] = new LaTeX2ePackage("hyperref", options_, aux_);
 	} else {
 	    packages[0] = new LaTeX2ePackage("hyperref");
 	}

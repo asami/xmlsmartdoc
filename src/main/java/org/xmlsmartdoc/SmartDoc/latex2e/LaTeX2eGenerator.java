@@ -118,7 +118,8 @@ import com.AsamiOffice.util.ULocale;
  * LaTeX2eGenerator
  *
  * @since   Oct. 18, 1998
- * @version Jun. 10, 2005
+ *  version Jun. 10, 2005
+ * @version Jan. 19, 2012
  * @author  ASAMI, Tomoharu (asami@XMLSmartDoc.org)
  */
 public class LaTeX2eGenerator extends AbstractStringBufferSmartDocGeneratorBase {
@@ -469,6 +470,9 @@ public class LaTeX2eGenerator extends AbstractStringBufferSmartDocGeneratorBase 
             buffer.append("{");
             buffer.append(lp.name);
             buffer.append("}\n");
+            if (lp.aux != null) {
+              buffer.append(lp.aux);
+            }
         }
     }
 

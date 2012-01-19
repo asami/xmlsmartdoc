@@ -23,19 +23,27 @@ package org.xmlsmartdoc.SmartDoc.latex2e;
  * LaTeX2ePackage
  *
  * @since   Jan. 31, 1998
- * @version Jan. 31, 1999
- * @author  ASAMI, Tomoharu (tasami@ibm.net)
+ *  version Jan. 31, 1999
+ * @version Jan. 19, 2012
+ * @author  ASAMI, Tomoharu (asami@xmlsmartdoc.org)
  */
 public class LaTeX2ePackage {
     public String name;
     public String[] options;
+    public String aux;
 
     public LaTeX2ePackage(String name) {
-	this.name = name;
+        this.name = name;
     }
 
     public LaTeX2ePackage(String name, String[] options) {
-	this.name = name;
-	this.options = options;
+        this.name = name;
+        this.options = options;
+    }
+
+    public LaTeX2ePackage(String name, String[] options, String aux) {
+        this.name = name;
+        this.options = options;
+        this.aux = aux;
     }
 }

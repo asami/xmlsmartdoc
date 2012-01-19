@@ -35,7 +35,8 @@ import com.AsamiOffice.io.UIO;
  * LaTeX2eAgent
  *
  * @since   May. 24, 1999
- * @version Mar. 12, 2004
+ *  version Mar. 12, 2004
+ * @version Jan. 19, 2012
  * @author  ASAMI, Tomoharu (asami@XMLSmartDoc.org)
  */
 public class LaTeX2eAgent {
@@ -101,8 +102,8 @@ public class LaTeX2eAgent {
         latexCommand_ = "latex $input";
         bibtexCommand_ = "bibtex $input";
         dvipsCommand_ = "dvips $input >$output";
-        dvipdfmCommand_ = "dvipdfm $input";
-        out2uniCommand_ = "out2uni $input";
+        dvipdfmCommand_ = "dvipdfmx $input"; // "dvipdfm $input";
+        out2uniCommand_ = null; // "out2uni $input";
     }
 
     private void _setupAsciiPTeX() {
@@ -110,8 +111,8 @@ public class LaTeX2eAgent {
         latexCommand_ = "platex $input";
         bibtexCommand_ = "jbibtex $input";
         dvipsCommand_ = "dvipsk $input >$output";
-        dvipdfmCommand_ = "dvipdfm $input";
-        out2uniCommand_ = "out2uni $input";
+        dvipdfmCommand_ = "dvipdfmx $input"; // "dvipdfm $input";
+        out2uniCommand_ = null; // "out2uni $input";
     }
 
     private void _setupNttJTeX() {
@@ -119,8 +120,8 @@ public class LaTeX2eAgent {
         latexCommand_ = "jlatex $input";
         bibtexCommand_ = "jbibtex $input";
         dvipsCommand_ = "dvi2ps $input >$output";
-        dvipdfmCommand_ = "dvipdfm $input";
-        out2uniCommand_ = "out2uni $input";
+        dvipdfmCommand_ = "dvipdfmx $input"; // "dvipdfm $input";
+        out2uniCommand_ = null; // "out2uni $input";
     }
 
     public File generateDVIFile() throws IOException {
@@ -150,7 +151,7 @@ public class LaTeX2eAgent {
     }
 
     private boolean _needOut2Uni() {
-        return (makePdf_);
+        return (makePdf_ && out2uniCommand_ != null);
     }
 
     protected boolean _runLaTeXCommand(String target, File dir)

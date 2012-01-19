@@ -27,7 +27,8 @@ import org.xmlsmartdoc.SmartDoc.latex2e.*;
  * DVIPDFMLaTeX2eImageHandler
  *
  * @since   Oct. 10, 2001
- * @version Jan.  7, 2002
+ *  version Jan.  7, 2002
+ * @version Jan. 19, 2012
  * @author  ASAMI, Tomoharu (asami@XMLSmartDoc.org)
  */
 public class DVIPDFMLaTeX2eImageHandler extends AbstractLaTeX2eImageHandler {
@@ -48,8 +49,10 @@ public class DVIPDFMLaTeX2eImageHandler extends AbstractLaTeX2eImageHandler {
 //			new String[] { "dvipdfm" }
 //		    ),
 		    new LaTeX2ePackage(
-			"hyperref",
-			new String[] { "dvipdfm", "bookmarks=true", "bookmarksnumbered=true", "bookmarkstype=toc" }
+		        "hyperref",
+		        new String[] { "dvipdfm", "bookmarks=true", "bookmarksnumbered=true", "bookmarkstype=toc" },
+		        "\\ifnum 42146=\\euc\"A4A2 \\AtBeginDvi{\\special{pdf:tounicode EUC-UCS2}}\\else\n" +
+		        " \\AtBeginDvi{\\special{pdf:tounicode 90ms-RKSJ-UCS2}}\\fi\n"
 		    )
 		}
 	    );
