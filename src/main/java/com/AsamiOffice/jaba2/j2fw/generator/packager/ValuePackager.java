@@ -32,7 +32,7 @@ import com.AsamiOffice.jaba2.j2fw.generator.LinkArtifact;
  * ValuePackager
  *
  * @since   Jan. 19, 2012
- * @version Jan. 19, 2012
+ * @version Jan. 20, 2012
  * @author  ASAMI, Tomoharu (asami@AsamiOffice.com)
  */
 public class ValuePackager implements IPackager {
@@ -48,7 +48,9 @@ public class ValuePackager implements IPackager {
             GeneratorArtifact a = artifacts[i];
             if (a instanceof LinkArtifact) {
                 LinkArtifact l = (LinkArtifact)a;
-                result.addArtifact(new BinaryArtifact(l.getName(), l.getBytes()));
+                try {
+                  result.addArtifact(new BinaryArtifact(l.getName(), l.getBytes()));
+                } catch (IOException e) {}
             } else {
                 result.addArtifact(artifacts[i]);
             }
