@@ -4,6 +4,7 @@
 
     since   : Jul. 27, 1999
     version : Nov. 16, 2003
+    version : Jan. 19, 2012
     author  : ASAMI, Tomoharu (asami@AsamiOffice.com)
 -->
 
@@ -31,5 +32,9 @@
   <entry>
     <name>stdout</name>
     <class>com.AsamiOffice.jaba2.j2fw.generator.packager.StdoutPackager</class>
+  </entry>
+  <entry>
+    <name>value</name>
+    <class>com.AsamiOffice.jaba2.j2fw.generator.packager.ValuePackager</class>
   </entry>
 </map>

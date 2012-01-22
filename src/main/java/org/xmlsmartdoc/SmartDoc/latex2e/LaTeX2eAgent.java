@@ -98,7 +98,7 @@ public class LaTeX2eAgent {
     }
 
     private void _setupPlainTeX() {
-        System.out.println("Plain TeX");
+        // System.out.println("Plain TeX");
         latexCommand_ = "latex $input";
         bibtexCommand_ = "bibtex $input";
         dvipsCommand_ = "dvips $input >$output";
@@ -107,7 +107,7 @@ public class LaTeX2eAgent {
     }
 
     private void _setupAsciiPTeX() {
-        System.out.println("ASCII p-TeX");
+        // System.out.println("ASCII p-TeX");
         latexCommand_ = "platex $input";
         bibtexCommand_ = "jbibtex $input";
         dvipsCommand_ = "dvipsk $input >$output";
@@ -116,7 +116,7 @@ public class LaTeX2eAgent {
     }
 
     private void _setupNttJTeX() {
-        System.out.println("NTT j-TeX");
+        // System.out.println("NTT j-TeX");
         latexCommand_ = "jlatex $input";
         bibtexCommand_ = "jbibtex $input";
         dvipsCommand_ = "dvi2ps $input >$output";
@@ -166,7 +166,7 @@ public class LaTeX2eAgent {
             public CommandAgent.HandlerResult handle(String input) {
                 CommandAgent.HandlerResult result
                     = new CommandAgent.HandlerResult();
-                System.out.println(input);
+                // System.out.println(input);
                 if (input.indexOf("LaTeX Error:") != -1) {
                     result.message = input;
                     result.state = CommandAgent.FINISH;

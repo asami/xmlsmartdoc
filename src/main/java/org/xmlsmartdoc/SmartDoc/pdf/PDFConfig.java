@@ -19,53 +19,58 @@
 
 package org.xmlsmartdoc.SmartDoc.pdf;
 
-import java.io.*;
-import com.AsamiOffice.jaba2.util.ParameterInfo;
+import java.io.File;
+import java.io.IOException;
+
+import org.xmlsmartdoc.SmartDoc.AbstractSmartDocDelegationFormatConfig;
+import org.xmlsmartdoc.SmartDoc.SmartDocConfig;
+import org.xmlsmartdoc.SmartDoc.latex2e.LaTeX2eConfig;
+import org.xmlsmartdoc.SmartDoc.latex2e.LaTeX2eGenerator;
+
 import com.AsamiOffice.jaba2.util.AppParameterInfo;
-import org.xmlsmartdoc.SmartDoc.*;
-import org.xmlsmartdoc.SmartDoc.latex2e.*;
+import com.AsamiOffice.jaba2.util.ParameterInfo;
 
 /**
  * PDFConfig
  *
  * @since   Sep. 30, 2003
- * @version Sep. 30, 2003
+ *  version Sep. 30, 2003
+ * @version Jan. 22, 2012
  * @author  ASAMI, Tomoharu (asami@XMLSmartDoc.org)
  */
 public class PDFConfig extends AbstractSmartDocDelegationFormatConfig {
     // SmartDocFormatConfig
     public void setup(SmartDocConfig config, String[] args)
-	throws IOException {
+        throws IOException {
 
-	ParameterInfo info = new AppParameterInfo(
-	    "org.xmlsmartdoc.SmartDoc",
-	    args,
-	    "org.xmlsmartdoc.SmartDoc.pdf.PDFDefaults",
-	    new File("SmartDoc.properties")
-	);
-	info.addPackage("org.xmlsmartdoc.SmartDoc.pdf");
-	info.addPackage("org.xmlsmartdoc.SmartDoc.pdf.handler");
-	LaTeX2eConfig latex2eConfig = new LaTeX2eConfig();
-	try {
-	    latex2eConfig.setup(
-		config,
-		new String[] {
-	        }
-	    );
-	} catch (IOException e) {
-	    throw (new InternalError()); // XXX
-	}
-	LaTeX2eGenerator latex2eGenerator = new LaTeX2eGenerator();
-	_init(config, "pdf", info, latex2eConfig, latex2eGenerator);
+        ParameterInfo info = new AppParameterInfo(
+            "org.xmlsmartdoc.SmartDoc",
+            args,
+            "org.xmlsmartdoc.SmartDoc.pdf.PDFDefaults",
+            new File("SmartDoc.properties")
+        );
+        info.addPackage("org.xmlsmartdoc.SmartDoc.pdf");
+        info.addPackage("org.xmlsmartdoc.SmartDoc.pdf.handler");
+        LaTeX2eConfig latex2eConfig = new LaTeX2eConfig();
+        try {
+            latex2eConfig.setup(
+                config,
+                args
+            );
+        } catch (IOException e) {
+            throw (new InternalError()); // XXX
+        }
+        LaTeX2eGenerator latex2eGenerator = new LaTeX2eGenerator();
+        _init(config, "pdf", info, latex2eConfig, latex2eGenerator);
     }
 
     // SmartDocFormatConfig
     public String getID() {
-	return ("pdf");
+        return ("pdf");
     }
 
     // SmartDocFormatConfig
     public String getName() {
-	return ("PDF");
+        return ("PDF");
     }
 }
