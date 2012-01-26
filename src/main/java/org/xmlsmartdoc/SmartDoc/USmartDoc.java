@@ -40,7 +40,8 @@ import com.AsamiOffice.io.UURL;
  * USmartDoc
  *
  * @since   Nov.  1, 1998
- * @version Mar. 15, 2004
+ *  version Mar. 15, 2004
+ * @version Jan. 27, 2012
  * @author  ASAMI, Tomoharu (asami@XMLSmartDoc.org)
  */
 public final class USmartDoc {
@@ -102,7 +103,8 @@ public final class USmartDoc {
         }
         return (
             isWordSeparateLang(before.charAt(before.length() - 1)) &&
-            isWordSeparateLang(before.charAt(0))
+            // isWordSeparateLang(before.charAt(0)) // XXX bug? after.charAt(0)
+            isWordSeparateLang(after.charAt(0))
         );
     }
 
