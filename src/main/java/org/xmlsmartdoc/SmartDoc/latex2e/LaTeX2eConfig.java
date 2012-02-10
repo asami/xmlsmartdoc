@@ -145,7 +145,7 @@ public class LaTeX2eConfig extends AbstractSmartDocFormatConfig {
 	    imageHandler_ = new DVI2PSLaTeX2eImageHandler();
 	    // eclepsf
 	} else if ("dvipdfm".equals(driver_)) {
-	    imageHandler_ = new DVIPSLaTeX2eImageHandler();
+	    imageHandler_ = new DVIPDFMLaTeX2eImageHandler();
 	    graphicPackage_ = "graphicx";
 	    graphicOptions_ = new String[] { "dvipdfm" };
 	}

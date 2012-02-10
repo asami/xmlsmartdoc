@@ -42,7 +42,8 @@ import com.AsamiOffice.xml.sax.EmacsErrorHandler;
  * SmartDocConfig
  *
  * @since   Sep. 23, 1998
- * @version Jul.  4, 2007
+ *  version Jul.  4, 2007
+ * @version Feb. 11, 2012
  * @author  ASAMI, Tomoharu (asami@XMLSmartDoc.org)
  */
 public class SmartDocConfig extends GeneratorConfig {
@@ -228,20 +229,20 @@ public class SmartDocConfig extends GeneratorConfig {
 
     // J2Config
     public String getVersion() {
-        return ("1.2b");
+        return ("2.0b2");
     }
 
     // J2Config
     public String getBuild() {
-        return ("20070604");
+        return ("20120212");
     }
 
     // J2Config
     public String[] getVersionMessage() {
         String[] message = {
-            "Copyright(c) 1998-2007 ASAMI,Tomoharu. All rights reserved.",
+            "Copyright(c) 1998-2012 ASAMI,Tomoharu. All rights reserved.",
             "SmartDoc Version " + getVersion() +
-            " (" + getBuild() + ") by asami@XMLSmartDoc.org",
+            " (" + getBuild() + ")",
         };
         return (message);
     }

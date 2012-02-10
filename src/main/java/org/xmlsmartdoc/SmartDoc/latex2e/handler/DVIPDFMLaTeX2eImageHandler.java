@@ -28,11 +28,13 @@ import org.xmlsmartdoc.SmartDoc.latex2e.*;
  *
  * @since   Oct. 10, 2001
  *  version Jan.  7, 2002
- * @version Jan. 19, 2012
+ *  version Jan. 19, 2012
+ * @version Feb. 11, 2012
  * @author  ASAMI, Tomoharu (asami@XMLSmartDoc.org)
  */
 public class DVIPDFMLaTeX2eImageHandler extends AbstractLaTeX2eImageHandler {
     public void setup(LaTeX2eConfig config) {
+        super.setup(config);
     }
 
     // LaTeX2eImageHandler
@@ -70,7 +72,7 @@ public class DVIPDFMLaTeX2eImageHandler extends AbstractLaTeX2eImageHandler {
 
     // LaTeX2eImageHandler
     public String[] getImageCandidates() {
-	return (new String[] { "eps", "ps", "gif", "jpg", "jpeg", "png" });
+	return (new String[] {"pdf", "eps", "ps", "gif", "jpg", "jpeg", "png" });
     }
 
     // XXX : same as DVIPSLaTeXImageHandler
@@ -289,7 +291,7 @@ public class DVIPDFMLaTeX2eImageHandler extends AbstractLaTeX2eImageHandler {
 	return (_generateImageArtifacts(image));
     }
 
-    // XXX : same as DVIPSLaTeXImageHandler
+    // XXX : *not* same as DVIPSLaTeXImageHandler
     private GeneratorArtifact[] _generateImageArtifacts(Content image) {
 	String filename;
 	filename = image.getSrc();
@@ -299,8 +301,10 @@ public class DVIPDFMLaTeX2eImageHandler extends AbstractLaTeX2eImageHandler {
 	if (filename.endsWith(".gif") ||
 	    filename.endsWith(".png") ||
 	    filename.endsWith(".jpeg") ||
-	    filename.endsWith(".jpg"))  {
-
+	    filename.endsWith(".jpg") ||
+	    filename.endsWith(".eps") ||
+	    filename.endsWith(".ps") ||
+	    filename.endsWith(".pdf"))  {
 	    return (
 		new GeneratorArtifact[] {
 		    ULaTeX2e.generateImageBoundingBox(filename)
